@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="1057.0" prefWidth="1453.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<VBox prefHeight="1200.0" prefWidth="1800.0" stylesheets="@gatorTheme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.UserTransactionController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
@@ -43,6 +43,7 @@
                                                 <Label layoutX="14.0" layoutY="6.0" prefHeight="33.0" prefWidth="106.0" text="Cash Transaction" />
                                                 <Label layoutX="251.0" layoutY="10.0" prefHeight="25.0" prefWidth="122.0" text="Credit Card" />
                                                 <Button fx:id="temp" layoutX="224.0" layoutY="43.0" mnemonicParsing="false" onAction="#onAction" prefHeight="47.0" prefWidth="155.0" text="Open Credit card Screen" />
+                                    <Button fx:id="homeButton" layoutX="335.0" layoutY="177.0" mnemonicParsing="false" onAction="#home_screen" prefHeight="72.0" prefWidth="138.0" text="Home" />
                                             </children>
                                         </AnchorPane>
                                     </content>
