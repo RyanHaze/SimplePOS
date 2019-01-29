@@ -14,7 +14,7 @@
          <children>
             <VBox prefHeight="600.0" prefWidth="1800.0">
                <children>
-                  <Label prefHeight="600.0" prefWidth="1800.0" text="           Welcome To Simple POS">
+                  <Label prefHeight="600.0" prefWidth="1800.0" text="           Welcome To Gator POS">
                      <font>
                         <Font size="96.0" />
                      </font>

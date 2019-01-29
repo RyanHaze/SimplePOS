@@ -27,7 +27,7 @@ public class HomeScreenController
     //Employee button method
     public void employeeButtonPressed(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("UserTransaction.fxml"));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("TabScreen.fxml"));
         Scene tableViewScene = new Scene(tableViewParent);
         //call helper method to setstage
         setStage(event, tableViewParent, tableViewScene);
