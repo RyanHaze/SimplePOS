@@ -24,6 +24,15 @@ public class HomeScreenController
     @FXML private Button managerButton;
     @FXML private Button employeeButton;
 
+    //initialize method
+    @FXML public void initialize()
+    {
+        
+    }
+
+
+
+
     //Employee button method
     public void employeeButtonPressed(ActionEvent event) throws IOException
     {
