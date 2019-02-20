@@ -8,16 +8,15 @@ import java.time.LocalDate;
 //Class to create employees
 public class Employee {
     //initialize private fields
-    private SimpleStringProperty firstName, lastName,id, level;
-    private LocalDate hireDate;
+    private SimpleStringProperty firstName, lastName,id, login;
 
 
-    public Employee(String firstName, String lastName, LocalDate hireDate, int id, int level) {
+
+    public Employee(String firstName, String lastName, int id, int login) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-        this.hireDate = hireDate;
         this.id = new SimpleStringProperty(Integer.toString(id));
-        this.level = new SimpleStringProperty(Integer.toString(level));
+        this.login = new SimpleStringProperty(Integer.toString(login));
     }
 
     //getters and setters
@@ -37,14 +36,6 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
-
     public void setId(int id) {
         this.id = new SimpleStringProperty(Integer.toString(id));
     }
@@ -53,13 +44,13 @@ public class Employee {
     {
         return id.get();
     }
-    public void setLevel(int level)
+    public void setLogin(int login)
     {
-        this.level = new SimpleStringProperty(Integer.toString(level));
+        this.login = new SimpleStringProperty(Integer.toString(login));
     }
-    public String getLevel()
+    public String getLogin()
     {
-        return level.get();
+        return login.get();
     }
 
 

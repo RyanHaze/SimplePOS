@@ -30,7 +30,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        Connection conn = ConnectionManager.getConnection();
+        Connection con = ConnectionManager.getConnection();
 
         launch(args);
     }
