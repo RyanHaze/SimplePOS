@@ -96,7 +96,7 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.6.0</version>
           <configuration>
-            <mainClass>org.dgby.gatorpos.Main</mainClass>
+            <mainClass>org.dgby.gatorpos.App</mainClass>
           </configuration>
         </plugin>
       </plugins>
