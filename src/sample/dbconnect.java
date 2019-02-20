@@ -3,10 +3,22 @@ package sample;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class dbconnect {
 
     public static String url;
+
+
+    private static String sql = "CREATE TABLE IF NOT EXISTS employees (\n"
+            + " employee_id integer PRIMARY KEY, \n"
+            + " employee_fname text NOT NULL, \n"
+            + " employee_lname text NOT NULL, \n"
+            + " employee_login integer NOT NULL\n"
+            + ");";
+
+
+
     //establish a connection to the db Need to create a new db if not found
     public static void connect()
     {
@@ -38,12 +50,7 @@ public class dbconnect {
         }
     }
 
-    //add a new table to the database
-    public static void createNewTable()
-    {
 
-
-    }
 
 
 
