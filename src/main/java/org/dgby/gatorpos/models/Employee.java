@@ -1,4 +1,4 @@
-package sample;
+package org.dgby.gatorpos.models;
 
 
 import javafx.beans.property.SimpleStringProperty;

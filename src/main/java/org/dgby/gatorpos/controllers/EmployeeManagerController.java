@@ -1,4 +1,4 @@
-package sample;
+package org.dgby.gatorpos.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 
+import org.dgby.gatorpos.SceneManager;
+import org.dgby.gatorpos.models.Employee;
 
 public class EmployeeManagerController
 {
@@ -36,7 +38,6 @@ public class EmployeeManagerController
     @FXML private Button backButton;
     @FXML private Button homeButton;
 
-
     @FXML public void initialize()
     {
         //set up columns in the table
@@ -44,7 +45,7 @@ public class EmployeeManagerController
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee,String>("lastName"));
         emplyeeIdCol.setCellValueFactory(new PropertyValueFactory<Employee,String>("id"));
         levelCol.setCellValueFactory(new PropertyValueFactory<Employee,String>("level"));
-        hireDateCol.setCellValueFactory(new PropertyValueFactory("hireDate"));
+        hireDateCol.setCellValueFactory(new PropertyValueFactory<Employee,LocalDate>("hireDate"));
 
         //load some dummy date
         employee_table.setItems(getEmployee());
@@ -62,36 +63,15 @@ public class EmployeeManagerController
 
     }
 
-
     // The functions below manage changing to the previous screens
 
     public void back_to_mngr_functions_scrn(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("MainManagerScreen.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        //call helper method to setstage
-        setStage(event, tableViewParent, tableViewScene);
-
+        SceneManager.getInstance().activate("MainManager");
     }
 
     public void back_to_home(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("HomeScreen.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        //call helper method to setstage
-        setStage(event, tableViewParent, tableViewScene);
+        SceneManager.getInstance().activate("Home");
     }
-
-    //helper method to reduce code redundancy
-    //helper method to get stage information
-    private void setStage(ActionEvent event, Parent tableViewParent, Scene tableViewScene)
-    {
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
-    }
-
-
-
-
 }

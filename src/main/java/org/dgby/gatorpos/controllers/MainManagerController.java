@@ -1,4 +1,4 @@
-package sample;
+package org.dgby.gatorpos.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+
+import org.dgby.gatorpos.SceneManager;
 
 public class MainManagerController
 {
@@ -27,31 +29,11 @@ public class MainManagerController
     //loads a tableview of all employees
     public void change_Add_Employee(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("EmployeeManager.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        //call helper method to setstage
-        setStage(event, tableViewParent, tableViewScene);
-
+        SceneManager.getInstance().activate("EmployeeManager");
     }
 
     public void back_to_home(ActionEvent event) throws IOException
     {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("HomeScreen.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        //call helper method to setstage
-        setStage(event, tableViewParent, tableViewScene);
+        SceneManager.getInstance().activate("Home");
     }
-
-    //helper method to reduce code redundancy
-    //helper method to get stage information
-    private void setStage(ActionEvent event, Parent tableViewParent, Scene tableViewScene)
-    {
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
-    }
-
-
-
-
 }
