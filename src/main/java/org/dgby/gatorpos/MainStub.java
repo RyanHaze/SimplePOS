@@ -1,7 +1,7 @@
 package org.dgby.gatorpos;
 
-public class Main {
+public class MainStub {
     public static void main(String[] args) {
-        App.main(args);
+        MainApp.main(args);
     }
 }

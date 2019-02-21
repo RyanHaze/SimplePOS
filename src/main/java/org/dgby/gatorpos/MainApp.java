@@ -2,13 +2,12 @@ package org.dgby.gatorpos;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
 
-public class App extends Application {
+public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         SceneManager.addScene("Home",
@@ -30,12 +29,12 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        Connection con = ConnectionManager.getConnection();
+        ConnectionManager.createTables();
 
         launch(args);
     }
 
-    public void activateScene(String name) {
+    public static void activateScene(String name) {
         SceneManager.getInstance().activate(name);
     }
 }
