@@ -44,12 +44,11 @@
                         </VBox>
                         <VBox prefHeight="630.0" prefWidth="450.0" spacing="20.0">
                            <children>
-                              <TextField fx:id="idText" promptText="Employee_id (must be number)" />
-                              <TextField fx:id="firstNameText" promptText="First Name" />
-                              <TextField fx:id="lastNameText" promptText="Last Name" />
-                              <TextField fx:id="loginText" promptText="Login Number (must be number)" />
-                              <Button mnemonicParsing="false" onAction="#addEmployeePushed" prefHeight="100.0" prefWidth="198.0" text="Add new Employee" />
-                              <Button mnemonicParsing="false" onAction="#deleteEmployeePushed" prefHeight="101.0" prefWidth="198.0" text="Delete Employee " />
+                              <TextField fx:id="firstName" promptText="First Name" />
+                              <TextField fx:id="lastName" promptText="Last Name" />
+                              <TextField fx:id="login" promptText="Login Number (must be number)" />
+                              <Button mnemonicParsing="false" onAction="#addEmployee" prefHeight="100.0" prefWidth="198.0" text="Add new Employee" />
+                              <Button mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="101.0" prefWidth="198.0" text="Delete Employee " />
                            </children>
                         </VBox>
                      </children>

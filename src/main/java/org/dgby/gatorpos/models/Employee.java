@@ -1,57 +1,133 @@
 package org.dgby.gatorpos.models;
 
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import java.sql.SQLException;
 
-import javafx.beans.property.SimpleStringProperty;
+import org.dgby.gatorpos.ConnectionManager;
 
-import java.time.LocalDate;
-
-//Class to create employees
 public class Employee {
-    //initialize private fields
-    private SimpleStringProperty firstName, lastName,id, login;
+    private IntegerProperty id;
+    private StringProperty firstName;
+    private StringProperty lastName;
+    private IntegerProperty login;
 
+    private static ObservableList<Employee> employeeList = FXCollections.observableArrayList();
 
-
-    public Employee(String firstName, String lastName, int id, int login) {
+    public Employee(Integer id, String firstName, String lastName, Integer login) {
+        this.id = new SimpleIntegerProperty(id);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-        this.id = new SimpleStringProperty(Integer.toString(id));
-        this.login = new SimpleStringProperty(Integer.toString(login));
+        this.login = new SimpleIntegerProperty(login);
     }
 
-    //getters and setters
+    public static ObservableList<Employee> getEmployees() {
+        ConnectionManager.createTable("Employees",
+                new String[] { "fname TEXT", "lname TEXT", "login INTEGER NOT NULL UNIQUE" });
+
+        employeeList.clear();
+        try {
+            ConnectionManager.executeQuery("SELECT rowid,* FROM Employees", (resultSet) -> {
+                try {
+                    while (resultSet.next())
+                        employeeList.add(new Employee(resultSet.getInt("rowid"), resultSet.getString("fname"),
+                                resultSet.getString("lname"), resultSet.getInt("login")));
+                } catch (SQLException sqlEx) {
+                    System.out.println(sqlEx.getMessage());
+                }
+                return 0;
+            });
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getMessage());
+        }
+
+        return employeeList;
+    }
+
+    public static void addEmployee(String firstName, String lastName, Integer login) {
+        try {
+            Integer id = ConnectionManager.insertRow("Employees",
+                    new String[] { "fname", "lname", "login" },
+                    new Object[] { firstName, lastName, login });
+            
+            ConnectionManager.executeQuery("SELECT rowid,* FROM Employees WHERE rowid = " + id, (resultSet) -> {
+                try {
+                    while (resultSet.next())
+                        employeeList.add(new Employee(resultSet.getInt("rowid"), resultSet.getString("fname"),
+                                resultSet.getString("lname"), resultSet.getInt("login")));
+                } catch (SQLException sqlEx) {
+                    System.out.println(sqlEx.getMessage());
+                }
+                return 0;
+            });
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getMessage());
+        }
+    }
+
+    public static void deleteEmployee(Integer id) {
+        try {
+            // TODO: Delete the employee from employeeList!
+            ConnectionManager.executeUpdate("DELETE FROM Employees WHERE rowid = " + id);
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getMessage());
+        }
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id.get();
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id.set(id);
+    }
+
+    /**
+     * @return the firstName
+     */
     public String getFirstName() {
         return firstName.get();
     }
 
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName.set(firstName);
+    }
+
+    /**
+     * @return the lastName
+     */
     public String getLastName() {
         return lastName.get();
     }
 
-    public void setFirstName(SimpleStringProperty firstName) {
-        this.firstName = firstName;
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName.set(lastName);
     }
 
-    public void setLastName(SimpleStringProperty lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setId(int id) {
-        this.id = new SimpleStringProperty(Integer.toString(id));
-    }
-
-    public String getId()
-    {
-        return id.get();
-    }
-    public void setLogin(int login)
-    {
-        this.login = new SimpleStringProperty(Integer.toString(login));
-    }
-    public String getLogin()
-    {
+    /**
+     * @return the login
+     */
+    public Integer getLogin() {
         return login.get();
     }
 
-
+    /**
+     * @param login the login to set
+     */
+    public void setLogin(Integer login) {
+        this.login.set(login);
+    }
 }

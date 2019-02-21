@@ -1,86 +1,109 @@
 package org.dgby.gatorpos;
 
-import org.dgby.gatorpos.models.Employee;
-
 import java.sql.*;
+import java.util.Collections;
+import java.util.function.Function;
 
 public class ConnectionManager {
-    private static String url = "jdbc:sqlite:C:/sqlite/db/posdb.db";
-    private static Connection con = null;
+    private static String url = "jdbc:sqlite:database.db";
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(url);
+    }
+
+    public static Integer executeQuery(String query, Function<ResultSet, Integer> callback) throws SQLException {
+        try (
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+        ) {
+            return callback.apply(resultSet);
+        }
+    }
+
+    public static int executeUpdate(String query) throws SQLException {
+        Connection connection = null;
+        Statement statement = null;
+
         try {
-            con = DriverManager.getConnection(url);
-            System.out.println("connection worked");
-        } catch (SQLException ex) {
-            System.out.println("Failed to connect to database.");
-            con = null;
-        }
-
-
-        return con;
-    }
-
-    //Add an entry to a table
-    public static void insertEmployee(int id, int login, String fname, String lname)
-    {
-        String sql = "INSERT INTO Employee(employee_id, employee_fname, employe_lname, employee_login) VALUES (?,?,?,?)";
-
-        try(Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)){
-            pstmt.setInt(1, id);
-            pstmt.setString(2,fname);
-            pstmt.setString(3, lname);
-            pstmt.setInt(4, login);
-            pstmt.executeUpdate();
-        }
-        catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-    }
-    //delete en employee entry table
-    public static void deleteEmployee(int id)
-    {
-        String sql = "DELETE FROM Employee WHERE employee_id = ?";
-        try(Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-        }
-        catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public static String[] populateTable()
-    {
-        String sql = "SELECT employee_id, employee_fname, employe_lname, employee_login FROM Employee";
-        String[] returnStrings;
-        returnStrings = new String[200];
-        int i = 0;
-        try(Connection con = getConnection(); Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)){
-
-            while(rs.next())
-            {
-                int eid = rs.getInt("employee_id");
-                returnStrings[i] = Integer.toString(eid);
-                returnStrings[i + 1] = rs.getString("employee_fname");
-                returnStrings[i + 2] = rs.getString("employe_lname");
-                int login = rs.getInt("employee_login");
-                returnStrings[i + 3] = Integer.toString(login);
-
-                //groups of 4
-                i = i + 4;
-
-
-
+            connection = getConnection();
+            statement = connection.createStatement();
+            return statement.executeUpdate(query);
+        } catch (SQLException sqlEx) {
+            throw sqlEx;
+        } finally {
+            try {
+                if (statement != null)
+                    statement.close();
+            } catch (SQLException sqlEx) {
             }
 
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException sqlEx) {
+            }
         }
-        catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-
-        return returnStrings;
     }
 
+    public static Integer insertRow(String tableName, String[] columns, Object[] data) throws SQLException {
+        String query = "INSERT INTO " + tableName + " ("
+                + String.join(", ", columns) + ") VALUES ("
+                + String.join(", ", Collections.nCopies(data.length, "?")) + ")";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = getConnection();
+            preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            int i = 1;
+            for (Object obj : data) {
+                if (obj instanceof String)
+                    preparedStatement.setString(i, (String)obj);
+                else if (obj instanceof Integer)
+                    preparedStatement.setInt(i, (Integer)obj);
+                else
+                    preparedStatement.setObject(i, obj);
+
+                i++;
+            }
+            
+            if (preparedStatement.executeUpdate() > 0) {
+                ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                if (resultSet.next())
+                    return resultSet.getInt("last_insert_rowid()");
+            }
+
+            return -1;
+        } catch (SQLException sqlEx) {
+            throw sqlEx;
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException sqlEx) {
+            }
+
+            try {
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException sqlEx) {
+            }
+        }
+    }
+
+    public static int createTable(String tableName, String[] coloums) {
+        String query = "CREATE TABLE IF NOT EXISTS " + tableName + " (";
+        for (String coloum : coloums)
+            query += coloum + ", ";
+        query = query.substring(0, query.length() - 2) + ")";
+        
+        try {
+            return executeUpdate(query);
+        } catch (SQLException sqlEx) {
+            System.out.println("[SQLITE_ERROR][createTable]: " + query);
+            System.out.println(sqlEx.getMessage());
+            return -1;
+        }
+    }
 }
