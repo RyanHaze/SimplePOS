@@ -39,13 +39,17 @@ public class EmployeeManagerController
 
     public void addEmployee()
     {
-        Employee.addEmployee(firstName.getText(), lastName.getText(), Integer.parseInt(login.getText()));
+        // TODO: Add check to see if anything is empty, or if login is in use.
+        Employee.addEmployee(firstName.getText(), lastName.getText(), Integer.valueOf(login.getText()));
     }
     
     public void deleteEmployee()
     {
         Employee employee = employee_table.getSelectionModel().getSelectedItem();
-        Employee.deleteEmployee(employee.getId());
+        if (employee != null)
+            Employee.deleteEmployee(employee);
+        else
+            System.out.println("You need to select an employee to delete!"); // TODO: Add a proper form alert for this.
     }
 
     public void back_to_mngr_functions_scrn(ActionEvent event) throws IOException

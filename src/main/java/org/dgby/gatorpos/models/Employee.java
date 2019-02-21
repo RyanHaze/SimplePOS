@@ -66,10 +66,10 @@ public class Employee {
         }
     }
 
-    public static void deleteEmployee(Integer id) {
+    public static void deleteEmployee(Employee employee) {
         try {
-            // TODO: Delete the employee from employeeList!
-            ConnectionManager.executeUpdate("DELETE FROM Employees WHERE rowid = " + id);
+            employeeList.remove(employee);
+            ConnectionManager.executeUpdate("DELETE FROM Employees WHERE rowid = " + employee.getId());
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
         }
