@@ -15,7 +15,8 @@ public class Product {
     private StringProperty description;
     private StringProperty catagory;
 
-    private static Map<String, ObservableList<Product>> productList = new HashMap<>();
+    private static ObservableList<Product> productList = FXCollections.observableArrayList();
+    private static Map<String, ObservableList<Product>> catagoryList = new HashMap<>();
 
     public Product(Integer id, String name, Integer price, String description, String catagory) {
         this.id = new SimpleIntegerProperty(id);
@@ -25,8 +26,16 @@ public class Product {
         this.catagory = new SimpleStringProperty(catagory);
     }
 
+    private static void _addProduct(Product product) {
+        productList.add(product);
+        if (!catagoryList.containsKey(product.getCatagory()))
+            catagoryList.put(product.getCatagory(), FXCollections.observableArrayList());
+        catagoryList.get(product.getCatagory()).add(product);
+    }
+
     public static void updateProducts() {
-        for (ObservableList<Product> list : productList.values())
+        productList.clear();
+        for (ObservableList<Product> list : catagoryList.values())
             list.clear();
 
         try {
@@ -35,13 +44,9 @@ public class Product {
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Products", resultSet -> {
                 while (resultSet.next()) {
-                    String catagory = resultSet.getString("catagory");
-
-                    if (!productList.containsKey(catagory))
-                        productList.put(catagory, FXCollections.observableArrayList());
-
-                    productList.get(catagory).add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
-                            resultSet.getInt("price"), resultSet.getString("description"), catagory));
+                    _addProduct(
+                            new Product(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("price"),
+                                    resultSet.getString("description"), resultSet.getString("catagory")));
                 }
             });
         } catch (SQLException sqlEx) {
@@ -50,12 +55,16 @@ public class Product {
     }
 
     public static Set<String> getCatagories() {
-        return productList.keySet();
+        return catagoryList.keySet();
+    }
+
+    public static ObservableList<Product> getProducts() {
+        return productList;
     }
 
     public static ObservableList<Product> getProductsByCatagory(String catagory) {
-        if (productList.containsKey(catagory))
-            return productList.get(catagory);
+        if (catagoryList.containsKey(catagory))
+            return catagoryList.get(catagory);
         return FXCollections.observableArrayList();
     }
 
@@ -67,13 +76,9 @@ public class Product {
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Products WHERE rowid = " + id, resultSet -> {
                 while (resultSet.next()) {
-                    String _catagory = resultSet.getString("catagory");
-
-                    if (!productList.containsKey(_catagory))
-                        productList.put(_catagory, FXCollections.observableArrayList());
-
-                    productList.get(_catagory).add(new Product(resultSet.getInt("id"), resultSet.getString("name"),
-                            resultSet.getInt("price"), resultSet.getString("description"), _catagory));
+                    _addProduct(
+                            new Product(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("price"),
+                                    resultSet.getString("description"), resultSet.getString("catagory")));
                 }
             });
         } catch (SQLException sqlEx) {
@@ -83,7 +88,8 @@ public class Product {
 
     public static void deleteProduct(Product product) {
         try {
-            productList.get(product.getCatagory()).remove(product);
+            productList.remove(product);
+            catagoryList.get(product.getCatagory()).remove(product);
             ConnectionManager.executeUpdate("DELETE FROM Products WHERE rowid = " + product.getId());
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
