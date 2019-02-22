@@ -23,15 +23,15 @@ public class Employee {
     }
 
     public static void updateEmployees() {
-        ConnectionManager.createTable("Employees",
-                new String[] { "fname TEXT", "lname TEXT", "login INTEGER NOT NULL UNIQUE" });
-
         employeeList.clear();
         try {
+            ConnectionManager.createTable("Employees",
+                new String[] { "fname TEXT", "lname TEXT", "login INTEGER NOT NULL UNIQUE" });
+
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Employees", resultSet -> {
                 while (resultSet.next())
                     employeeList.add(new Employee(resultSet.getInt("id"), resultSet.getString("fname"),
-                        resultSet.getString("lname"), resultSet.getInt("login")));
+                            resultSet.getString("lname"), resultSet.getInt("login")));
             });
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
@@ -44,14 +44,13 @@ public class Employee {
 
     public static void addEmployee(String firstName, String lastName, Integer login) {
         try {
-            Integer id = ConnectionManager.insertRow("Employees",
-                    new String[] { "fname", "lname", "login" },
+            Integer id = ConnectionManager.insertRow("Employees", new String[] { "fname", "lname", "login" },
                     new Object[] { firstName, lastName, login });
-            
+
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Employees WHERE rowid = " + id, resultSet -> {
                 while (resultSet.next())
                     employeeList.add(new Employee(resultSet.getInt("id"), resultSet.getString("fname"),
-                        resultSet.getString("lname"), resultSet.getInt("login")));
+                            resultSet.getString("lname"), resultSet.getInt("login")));
             });
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());

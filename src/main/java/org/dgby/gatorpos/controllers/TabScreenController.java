@@ -7,12 +7,11 @@ import java.io.IOException;
 
 import org.dgby.gatorpos.SceneManager;
 
-public class TabScreenController
-{
-    @FXML private Button fastCash;
+public class TabScreenController {
+    @FXML
+    private Button fastCash;
 
-    public void fastCashTransaction(ActionEvent event) throws IOException
-    {
+    public void fastCashTransaction(ActionEvent event) throws IOException {
         SceneManager.getInstance().activate("UserTransaction");
     }
 }

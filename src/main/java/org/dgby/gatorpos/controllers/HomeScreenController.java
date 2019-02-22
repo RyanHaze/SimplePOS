@@ -8,31 +8,30 @@ import java.io.IOException;
 
 import org.dgby.gatorpos.SceneManager;
 
-public class HomeScreenController
-{
-    /* This class Controls the Home Screen. The home Screen
-       consists of an Employee and Manager Button that takes
-       the user to the corresponding Screens.
-    */
+public class HomeScreenController {
+    /*
+     * This class Controls the Home Screen. The home Screen consists of an Employee
+     * and Manager Button that takes the user to the corresponding Screens.
+     */
 
-    //Declare the buttons (may not need to do this)
-    @FXML private Button managerButton;
-    @FXML private Button employeeButton;
+    // Declare the buttons (may not need to do this)
+    @FXML
+    private Button managerButton;
+    @FXML
+    private Button employeeButton;
 
-    //initialize method
-    @FXML public void initialize()
-    {
-        
+    // initialize method
+    @FXML
+    public void initialize() {
+
     }
 
-    //Employee button method
-    public void employeeButtonPressed(ActionEvent event) throws IOException
-    {
+    // Employee button method
+    public void employeeButtonPressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().activate("Tab");
     }
 
-    public void managerButtonPressed(ActionEvent event) throws IOException
-    {
+    public void managerButtonPressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().activate("MainManager");
     }
 }

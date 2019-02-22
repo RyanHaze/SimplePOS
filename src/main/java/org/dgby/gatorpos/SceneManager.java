@@ -9,7 +9,8 @@ public class SceneManager {
     private static HashMap<String, Scene> sceneMap = new HashMap<>();
     private Stage mainStage;
 
-    private SceneManager() {}
+    private SceneManager() {
+    }
 
     protected static void addScene(String name, Scene scene) {
         sceneMap.put(name, scene);
@@ -27,7 +28,7 @@ public class SceneManager {
     public static SceneManager getInstance() {
         if (instance == null)
             instance = new SceneManager();
-        
+
         return instance;
     }
 }
