@@ -2,34 +2,35 @@ package org.dgby.gatorpos.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
 import javafx.event.*;
-
-import java.io.IOException;
+import java.util.Set;
 
 import org.dgby.gatorpos.SceneManager;
+import org.dgby.gatorpos.models.Product;
 
 public class UserTransactionController {
     @FXML
-    private Button temp;
-    @FXML
-    private Button dragon_Beer;
-    @FXML
-    private Label tempLabel;
-    @FXML
     private Button homeButton;
+    @FXML
+    private TabPane tabPane;
 
     @FXML
-    private void onAction(ActionEvent event) {
-        tempLabel.setText("Credit card button");
-    }
-
-    @FXML
-    private void onAction2(ActionEvent event) {
-        tempLabel.setText("Dragon Beer added to cart");
-        // store more in the database
-    }
-
-    public void home_screen(ActionEvent event) throws IOException {
+    public void home_screen(ActionEvent event) {
         SceneManager.getInstance().activate("Home");
+    }
+
+    @FXML
+    public void initialize() {
+        Product.updateProducts();
+        Set<String> catagories = Product.getCatagories();
+        for (String catagory : catagories) {
+            System.out.println("Creating " + catagory);
+            Tab newTab = new Tab();
+            newTab.setText(catagory);
+            newTab.setContent(new Rectangle(200, 200, Color.LIGHTBLUE));
+            tabPane.getTabs().add(newTab);
+        }
     }
 }
