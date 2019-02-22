@@ -13,40 +13,40 @@ public class Product {
     private StringProperty name;
     private IntegerProperty price;
     private StringProperty description;
-    private StringProperty catagory;
+    private StringProperty category;
 
     private static ObservableList<Product> productList = FXCollections.observableArrayList();
-    private static Map<String, ObservableList<Product>> catagoryList = new HashMap<>();
+    private static Map<String, ObservableList<Product>> categoryList = new HashMap<>();
 
-    public Product(Integer id, String name, Integer price, String description, String catagory) {
+    public Product(Integer id, String name, Integer price, String description, String category) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleIntegerProperty(price);
         this.description = new SimpleStringProperty(description);
-        this.catagory = new SimpleStringProperty(catagory);
+        this.category = new SimpleStringProperty(category);
     }
 
     private static void _addProduct(Product product) {
         productList.add(product);
-        if (!catagoryList.containsKey(product.getCatagory()))
-            catagoryList.put(product.getCatagory(), FXCollections.observableArrayList());
-        catagoryList.get(product.getCatagory()).add(product);
+        if (!categoryList.containsKey(product.getCategory()))
+            categoryList.put(product.getCategory(), FXCollections.observableArrayList());
+        categoryList.get(product.getCategory()).add(product);
     }
 
     public static void updateProducts() {
         productList.clear();
-        for (ObservableList<Product> list : catagoryList.values())
+        for (ObservableList<Product> list : categoryList.values())
             list.clear();
 
         try {
             ConnectionManager.createTable("Products",
-                    new String[] { "name TEXT", "price INTEGER", "description TEXT", "catagory TEXT" });
+                    new String[] { "name TEXT", "price INTEGER", "description TEXT", "category TEXT" });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Products", resultSet -> {
                 while (resultSet.next()) {
                     _addProduct(
                             new Product(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("price"),
-                                    resultSet.getString("description"), resultSet.getString("catagory")));
+                                    resultSet.getString("description"), resultSet.getString("category")));
                 }
             });
         } catch (SQLException sqlEx) {
@@ -54,31 +54,31 @@ public class Product {
         }
     }
 
-    public static Set<String> getCatagories() {
-        return catagoryList.keySet();
+    public static Set<String> getCategories() {
+        return categoryList.keySet();
     }
 
     public static ObservableList<Product> getProducts() {
         return productList;
     }
 
-    public static ObservableList<Product> getProductsByCatagory(String catagory) {
-        if (catagoryList.containsKey(catagory))
-            return catagoryList.get(catagory);
+    public static ObservableList<Product> getProductsBycategory(String category) {
+        if (categoryList.containsKey(category))
+            return categoryList.get(category);
         return FXCollections.observableArrayList();
     }
 
-    public static void addProduct(String name, Integer price, String description, String catagory) {
+    public static void addProduct(String name, Integer price, String description, String category) {
         try {
             Integer id = ConnectionManager.insertRow("Products",
-                    new String[] { "name", "price", "description", "catagory" },
-                    new Object[] { name, price, description, price });
+                    new String[] { "name", "price", "description", "category" },
+                    new Object[] { name, price, description, category });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Products WHERE rowid = " + id, resultSet -> {
                 while (resultSet.next()) {
                     _addProduct(
                             new Product(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("price"),
-                                    resultSet.getString("description"), resultSet.getString("catagory")));
+                                    resultSet.getString("description"), resultSet.getString("category")));
                 }
             });
         } catch (SQLException sqlEx) {
@@ -89,7 +89,7 @@ public class Product {
     public static void deleteProduct(Product product) {
         try {
             productList.remove(product);
-            catagoryList.get(product.getCatagory()).remove(product);
+            categoryList.get(product.getCategory()).remove(product);
             ConnectionManager.executeUpdate("DELETE FROM Products WHERE rowid = " + product.getId());
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
@@ -153,17 +153,17 @@ public class Product {
     }
 
     /**
-     * @return the catagory
+     * @return the category
      */
-    public String getCatagory() {
-        return catagory.get();
+    public String getCategory() {
+        return category.get();
     }
 
     /**
-     * @param catagory the catagory to set
+     * @param category the category to set
      */
-    public void setCatagory(String catagory) {
-        this.catagory.set(catagory);
+    public void setCategory(String category) {
+        this.category.set(category);
     }
 
 }

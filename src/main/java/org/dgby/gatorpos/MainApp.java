@@ -17,7 +17,9 @@ public class MainApp extends Application {
                 SceneManager.addScene("EmployeeManager", new Scene(
                                 FXMLLoader.load(getClass().getResource("views/EmployeeManager.fxml")), 1800, 1200));
                 SceneManager.addScene("UserTransaction", new Scene(
-                                FXMLLoader.load(getClass().getResource("views/UserTransaction.fxml")), 1800, 1200));
+                        FXMLLoader.load(getClass().getResource("views/UserTransaction.fxml")), 1800, 1200));
+                SceneManager.addScene("ProductManager", new Scene(
+                        FXMLLoader.load(getClass().getResource("views/ProductManager.fxml")), 1800, 1200));
 
                 primaryStage.setTitle("GatorPOS");
                 primaryStage.setFullScreen(false);

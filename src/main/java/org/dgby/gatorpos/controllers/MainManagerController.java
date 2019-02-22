@@ -33,4 +33,9 @@ public class MainManagerController {
     public void back_to_home(ActionEvent event) throws IOException {
         SceneManager.getInstance().activate("Home");
     }
+
+    public void change_Product_manager(ActionEvent event) throws IOException
+    {
+        SceneManager.getInstance().activate("ProductManager");
+    }
 }

@@ -24,7 +24,7 @@ public class UserTransactionController {
     @FXML
     public void initialize() {
         Product.updateProducts();
-        Set<String> catagories = Product.getCatagories();
+        Set<String> catagories = Product.getCategories();
         for (String catagory : catagories) {
             System.out.println("Creating " + catagory);
             Tab newTab = new Tab();

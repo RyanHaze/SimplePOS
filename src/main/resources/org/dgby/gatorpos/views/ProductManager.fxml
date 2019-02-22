@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dgby.gatorpos.controllers.ProductManagerController">
+    <children>
+        <AnchorPane prefHeight="1200.0" prefWidth="1800.0">
+            <children>
+                <VBox layoutX="45.0" layoutY="46.0" prefHeight="600.0" prefWidth="1800.0" spacing="50.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Label prefHeight="37.0" prefWidth="502.0" text="Product add/remove" />
+                            </children>
+                            <VBox.margin>
+                                <Insets left="40.0" right="40.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="630.0" prefWidth="1800.0">
+                            <children>
+                                <VBox prefHeight="630.0" prefWidth="900.0">
+                                    <HBox.margin>
+                                        <Insets left="30.0" />
+                                    </HBox.margin>
+                                    <children>
+                                        <TableView fx:id="product_table" prefHeight="740.0" prefWidth="900.0">
+                                            <columns>
+                                                <TableColumn fx:id="prod_IdCol" prefWidth="108.0" text="Product_id" />
+                                                <TableColumn fx:id="prod_NameCol" prefWidth="159.0" text="Product_name" />
+                                                <TableColumn fx:id="prod_PriceCol" prefWidth="171.0" text="Product_price" />
+                                                <TableColumn fx:id="prod_CatCol" prefWidth="204.0" text="Product_Category" />
+                                    <TableColumn fx:id="prod_DescriptionCol" prefWidth="257.0" text="Product_Description" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="630.0" prefWidth="450.0" spacing="20.0">
+                                    <children>
+                                        <TextField fx:id="prod_Name" promptText="Product_name" />
+                                        <TextField fx:id="prod_Price" promptText="Product_price" />
+                                        <TextField fx:id="prod_Cat" promptText="Product_category" />
+                              <TextField fx:id="prod_Description" promptText="Product_description" />
+                                        <Button mnemonicParsing="false" onAction="#addProduct" prefHeight="100.0" prefWidth="198.0" text="Add new Product" />
+                                        <Button mnemonicParsing="false" onAction="#deleteProduct" prefHeight="101.0" prefWidth="198.0" text="Delete Product" />
+                                    </children>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children></VBox>
+                <HBox layoutY="995.0" prefHeight="185.0" prefWidth="1760.0" spacing="30.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="995.0">
+                    <children>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#back_to_mngr_functions_scrn" prefHeight="200.0" prefWidth="900.0" text="Back To Manager Functions">
+                            <font>
+                                <Font name="System Bold Italic" size="50.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="homeButton" mnemonicParsing="false" onAction="#back_to_home" prefHeight="200.0" prefWidth="900.0" text="Home Screen">
+                            <font>
+                                <Font name="System Bold Italic" size="50.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

@@ -30,7 +30,7 @@
                               <Font name="Arial Bold Italic" size="26.0" />
                            </font>
                         </Button>
-                        <Button fx:id="add_Remove_Items" mnemonicParsing="false" prefHeight="400.0" prefWidth="400.0" text="Add/Remove Items">
+                        <Button fx:id="add_Remove_Items" mnemonicParsing="false" onAction="#change_Product_manager" prefHeight="400.0" prefWidth="400.0" text="Add/Remove Items">
                            <font>
                               <Font name="Arial Bold Italic" size="26.0" />
                            </font>
