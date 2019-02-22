@@ -22,26 +22,23 @@ public class Employee {
         this.login = new SimpleIntegerProperty(login);
     }
 
-    public static ObservableList<Employee> getEmployees() {
+    public static void updateEmployees() {
         ConnectionManager.createTable("Employees",
                 new String[] { "fname TEXT", "lname TEXT", "login INTEGER NOT NULL UNIQUE" });
 
         employeeList.clear();
         try {
-            ConnectionManager.executeQuery("SELECT rowid,* FROM Employees", (resultSet) -> {
-                try {
-                    while (resultSet.next())
-                        employeeList.add(new Employee(resultSet.getInt("rowid"), resultSet.getString("fname"),
-                                resultSet.getString("lname"), resultSet.getInt("login")));
-                } catch (SQLException sqlEx) {
-                    System.out.println(sqlEx.getMessage());
-                }
-                return 0;
+            ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Employees", resultSet -> {
+                while (resultSet.next())
+                    employeeList.add(new Employee(resultSet.getInt("id"), resultSet.getString("fname"),
+                        resultSet.getString("lname"), resultSet.getInt("login")));
             });
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
         }
+    }
 
+    public static ObservableList<Employee> getEmployees() {
         return employeeList;
     }
 
@@ -51,15 +48,10 @@ public class Employee {
                     new String[] { "fname", "lname", "login" },
                     new Object[] { firstName, lastName, login });
             
-            ConnectionManager.executeQuery("SELECT rowid,* FROM Employees WHERE rowid = " + id, (resultSet) -> {
-                try {
-                    while (resultSet.next())
-                        employeeList.add(new Employee(resultSet.getInt("rowid"), resultSet.getString("fname"),
-                                resultSet.getString("lname"), resultSet.getInt("login")));
-                } catch (SQLException sqlEx) {
-                    System.out.println(sqlEx.getMessage());
-                }
-                return 0;
+            ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Employees WHERE rowid = " + id, resultSet -> {
+                while (resultSet.next())
+                    employeeList.add(new Employee(resultSet.getInt("id"), resultSet.getString("fname"),
+                        resultSet.getString("lname"), resultSet.getInt("login")));
             });
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());

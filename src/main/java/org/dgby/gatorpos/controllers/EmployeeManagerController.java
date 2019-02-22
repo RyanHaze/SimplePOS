@@ -34,13 +34,18 @@ public class EmployeeManagerController
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee,String>("lastName"));
         loginCol.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("login"));
         
+        Employee.updateEmployees();
         employee_table.setItems(Employee.getEmployees());
     }
 
     public void addEmployee()
     {
-        // TODO: Add check to see if anything is empty, or if login is in use.
-        Employee.addEmployee(firstName.getText(), lastName.getText(), Integer.valueOf(login.getText()));
+        String firstName = this.firstName.getText();
+        String lastName = this.lastName.getText();
+        String login = this.login.getText();
+        
+        if ((firstName.length() > 0) && (lastName.length() > 0) && (login.length() > 0))
+            Employee.addEmployee(firstName, lastName, Integer.valueOf(login));
     }
     
     public void deleteEmployee()

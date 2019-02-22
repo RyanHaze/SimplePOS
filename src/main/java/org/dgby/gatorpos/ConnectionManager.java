@@ -2,7 +2,6 @@ package org.dgby.gatorpos;
 
 import java.sql.*;
 import java.util.Collections;
-import java.util.function.Function;
 
 public class ConnectionManager {
     private static String url = "jdbc:sqlite:database.db";
@@ -11,38 +10,27 @@ public class ConnectionManager {
         return DriverManager.getConnection(url);
     }
 
-    public static Integer executeQuery(String query, Function<ResultSet, Integer> callback) throws SQLException {
+    @FunctionalInterface
+    public interface ThrowingConsumer<T, E extends Exception> {
+        void accept(T t) throws E;
+    }
+
+    public static void executeQuery(String query, ThrowingConsumer<ResultSet, SQLException> callback) throws SQLException {
         try (
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
         ) {
-            return callback.apply(resultSet);
+            callback.accept(resultSet);
         }
     }
 
     public static int executeUpdate(String query) throws SQLException {
-        Connection connection = null;
-        Statement statement = null;
-
-        try {
-            connection = getConnection();
-            statement = connection.createStatement();
+        try (
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+        ) {
             return statement.executeUpdate(query);
-        } catch (SQLException sqlEx) {
-            throw sqlEx;
-        } finally {
-            try {
-                if (statement != null)
-                    statement.close();
-            } catch (SQLException sqlEx) {
-            }
-
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException sqlEx) {
-            }
         }
     }
 
@@ -50,12 +38,11 @@ public class ConnectionManager {
         String query = "INSERT INTO " + tableName + " ("
                 + String.join(", ", columns) + ") VALUES ("
                 + String.join(", ", Collections.nCopies(data.length, "?")) + ")";
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = getConnection();
-            preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        
+        try (
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ) {
             int i = 1;
             for (Object obj : data) {
                 if (obj instanceof String)
@@ -69,26 +56,15 @@ public class ConnectionManager {
             }
             
             if (preparedStatement.executeUpdate() > 0) {
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                if (resultSet.next())
-                    return resultSet.getInt("last_insert_rowid()");
+                try (
+                    ResultSet resultSet = preparedStatement.getGeneratedKeys();
+                ) {
+                    if (resultSet.next())
+                        return resultSet.getInt("last_insert_rowid()");
+                }
             }
 
             return -1;
-        } catch (SQLException sqlEx) {
-            throw sqlEx;
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException sqlEx) {
-            }
-
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException sqlEx) {
-            }
         }
     }
 
