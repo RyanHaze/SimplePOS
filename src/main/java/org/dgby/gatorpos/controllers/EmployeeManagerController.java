@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Font;
 
 public class EmployeeManagerController {
     @FXML
@@ -39,13 +40,18 @@ public class EmployeeManagerController {
 
     @FXML
     public void initialize() {
+
+
         employeeIdCol.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         firstNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
         loginCol.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("login"));
 
+
         Employee.updateEmployees();
         employee_table.setItems(Employee.getEmployees());
+
+
     }
 
     @FXML
@@ -54,8 +60,11 @@ public class EmployeeManagerController {
         String lastName = this.lastName.getText();
         String login = this.login.getText();
 
+
+
         if ((firstName.length() > 0) && (lastName.length() > 0) && (login.length() > 0))
             Employee.addEmployee(firstName, lastName, Integer.valueOf(login));
+
     }
 
     @FXML
