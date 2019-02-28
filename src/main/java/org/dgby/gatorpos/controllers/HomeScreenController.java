@@ -1,5 +1,6 @@
 package org.dgby.gatorpos.controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
@@ -33,5 +34,10 @@ public class HomeScreenController {
 
     public void managerButtonPressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().activate("MainManager");
+    }
+
+    public void exitButtonPressed(ActionEvent event )throws IOException
+    {
+        Platform.exit();
     }
 }

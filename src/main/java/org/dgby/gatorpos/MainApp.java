@@ -9,7 +9,7 @@ public class MainApp extends Application {
         @Override
         public void start(Stage primaryStage) throws Exception {
                 SceneManager.addScene("Home", new Scene(
-                                FXMLLoader.load(getClass().getResource("views/HomeScreen.fxml")), 1800, 1200));
+                                FXMLLoader.load(getClass().getResource("views/FinalHomeScreen.fxml")), 1800, 1200));
                 SceneManager.addScene("Tab",
                                 new Scene(FXMLLoader.load(getClass().getResource("views/TabScreen.fxml")), 1800, 1200));
                 SceneManager.addScene("MainManager", new Scene(
