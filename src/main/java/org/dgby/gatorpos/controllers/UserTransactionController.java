@@ -17,12 +17,24 @@ public class UserTransactionController {
     private TabPane tabPane;
 
     @FXML
+    private TitledPane cart_tp;
+
+    @FXML
+    private Accordion cart_accord;
+
+    @FXML
     public void home_screen(ActionEvent event) {
         SceneManager.getInstance().activate("Home");
     }
 
     @FXML
     public void initialize() {
+
+
+
+
+
+        /*
         Product.updateProducts();
         Set<String> catagories = Product.getCategories();
         for (String catagory : catagories) {
@@ -31,6 +43,9 @@ public class UserTransactionController {
             newTab.setText(catagory);
             newTab.setContent(new Rectangle(200, 200, Color.LIGHTBLUE));
             tabPane.getTabs().add(newTab);
+
+
         }
+    */
     }
 }
