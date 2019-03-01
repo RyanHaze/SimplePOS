@@ -46,4 +46,14 @@ public class HomeScreenController {
     {
         managerButton.setStyle("-fx-background-color: red ");
     }
+    public void touchScreenRelease (TouchEvent event) throws IOException
+    {
+        managerButton.setStyle("-fx-background-color: linear-gradient(#ffd65b, #e68400),\n" +
+                "    linear-gradient(#ffef84, #f2ba44),\n" +
+                "    linear-gradient(#ffea6a, #efaa22),\n" +
+                "    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
+                "    linear-gradient(from 0% 0% to 15% 50%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));");
+    }
+
+
 }
