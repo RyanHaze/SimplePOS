@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import javafx.scene.paint.*;
 import javafx.scene.shape.*;
 import javafx.event.*;
+
+import java.io.IOException;
 import java.util.Set;
 
 import org.dgby.gatorpos.SceneManager;
@@ -15,6 +17,9 @@ public class UserTransactionController {
     private Button homeButton;
     @FXML
     private TabPane tabPane;
+
+    @FXML
+    private Button testButton;
 
     @FXML
     private TitledPane cart_tp;
@@ -32,8 +37,6 @@ public class UserTransactionController {
 
 
 
-
-
         /*
         Product.updateProducts();
         Set<String> catagories = Product.getCategories();
@@ -47,5 +50,11 @@ public class UserTransactionController {
 
         }
     */
+    }
+
+    public void touchScreenPress (ActionEvent event) throws IOException
+    {
+        testButton.setStyle("-fx-background-color: red ");
+
     }
 }
