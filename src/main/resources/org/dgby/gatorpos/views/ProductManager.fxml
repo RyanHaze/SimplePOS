@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: midnightblue;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dgby.gatorpos.controllers.ProductManagerController">
    <children>
       <GridPane alignment="CENTER" hgap="20.0" layoutX="10.0" layoutY="10.0" prefHeight="5000.0" prefWidth="5000.0" vgap="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -24,8 +23,8 @@
             <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#back_to_mngr_functions_scrn" prefHeight="5000.0" prefWidth="5000.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),        linear-gradient(#ffef84, #f2ba44),        linear-gradient(#ffea6a, #efaa22),        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0)); -fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-text-fill: #654b00; -fx-font-weight: bold; -fx-font-size: 20; -fx-padding: 10 20 10 20;" text="Back To Manager Functions" GridPane.rowIndex="1" />
-            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onAction="#back_to_home" prefHeight="5000.0" prefWidth="5000.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),        linear-gradient(#ffef84, #f2ba44),        linear-gradient(#ffea6a, #efaa22),        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0)); -fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-text-fill: #654b00; -fx-font-weight: bold; -fx-font-size: 20; -fx-padding: 10 20 10 20;" text="Home Screen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#back_to_mngr_functions_scrn" prefHeight="5000.0" prefWidth="5000.0" stylesheets="@orangeButton.css" text="Back To Manager Functions" GridPane.rowIndex="1" />
+            <Button fx:id="homeButton" alignment="CENTER" mnemonicParsing="false" onAction="#back_to_home" prefHeight="5000.0" prefWidth="5000.0" stylesheets="@orangeButton.css" text="Home Screen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TableView fx:id="product_table" prefHeight="5000.0" prefWidth="5000.0">
                <columns>
                   <TableColumn fx:id="prod_IdCol" prefWidth="200.0" style="-fx-font-size: 20;" text="ID" />
@@ -41,8 +40,8 @@
                   <TextField fx:id="prod_Price" alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" promptText="Product_price" />
                   <TextField fx:id="prod_Cat" alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" promptText="Product_category" />
                   <TextField fx:id="prod_Description" alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" promptText="Product_description" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#addProduct" prefHeight="5000.0" prefWidth="5000.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),        linear-gradient(#ffef84, #f2ba44),        linear-gradient(#ffea6a, #efaa22),        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0)); -fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-text-fill: #654b00; -fx-font-weight: bold; -fx-font-size: 20; -fx-padding: 10 20 10 20;" text="Add new Product" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="5000.0" prefWidth="5000.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),        linear-gradient(#ffef84, #f2ba44),        linear-gradient(#ffea6a, #efaa22),        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0)); -fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-text-fill: #654b00; -fx-font-weight: bold; -fx-font-size: 20; -fx-padding: 10 20 10 20;" text="Delete Product" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#addProduct" prefHeight="5000.0" prefWidth="5000.0" stylesheets="@orangeButton.css" text="Add new Product" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="5000.0" prefWidth="5000.0" stylesheets="@orangeButton.css" text="Delete Product" />
                </children>
             </VBox>
          </children>

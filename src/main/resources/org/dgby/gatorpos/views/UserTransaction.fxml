@@ -20,9 +20,9 @@
          <children>
             <VBox alignment="CENTER" prefHeight="600.0" prefWidth="223.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Accordion fx:id="cart_accord" prefHeight="313.0" prefWidth="200.0" VBox.vgrow="ALWAYS" expandedPane="$cart_tp" >
+                  <Accordion fx:id="cart_accord" prefHeight="313.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <panes>
-                        <TitledPane fx:id="cart_tp" alignment="CENTER" animated="false" prefHeight="5000.0" prefWidth="5000.0" style="-fx-skin: orange;" text="Set the tab name">
+                        <TitledPane fx:id="cart_tp" alignment="CENTER" animated="false" prefHeight="5000.0" prefWidth="5000.0" text="Set the tab name">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="5000.0" prefWidth="5000.0">
                                  <children>
@@ -91,7 +91,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" stylesheets="@orangeButton.css" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" />
                                     <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" />
                                     <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
