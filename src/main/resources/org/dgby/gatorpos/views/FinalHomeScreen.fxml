@@ -47,7 +47,7 @@
               </rowConstraints>
                <children>
                   <Button fx:id="employeeButton" mnemonicParsing="false" onAction="#employeeButtonPressed" prefHeight="5000.0" prefWidth="5000.0" text="Employee" />
-                  <Button fx:id="managerButton" mnemonicParsing="false" onAction="#managerButtonPressed" onTouchPressed="#touchScreenPress" prefHeight="5000.0" prefWidth="5000.0" text="Manager" GridPane.columnIndex="1" />
+                  <Button fx:id="managerButton" mnemonicParsing="false" onAction="#managerButtonPressed"  prefHeight="5000.0" prefWidth="5000.0" text="Manager" GridPane.columnIndex="1" />
                   <Button mnemonicParsing="false" onAction="#exitButtonPressed" prefHeight="5000.0" prefWidth="5000.0" text="Exit" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" />
                </children>
                <padding>

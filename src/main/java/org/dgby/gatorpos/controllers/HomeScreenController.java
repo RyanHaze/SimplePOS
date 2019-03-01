@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
+import javafx.scene.input.TouchEvent;
 import org.dgby.gatorpos.SceneManager;
 
 public class HomeScreenController {
@@ -41,7 +42,7 @@ public class HomeScreenController {
         Platform.exit();
     }
 
-    public void touchScreenPress (ActionEvent event) throws IOException
+    public void touchScreenPress (TouchEvent event) throws IOException
     {
         managerButton.setStyle("-fx-background-color: red ");
     }
