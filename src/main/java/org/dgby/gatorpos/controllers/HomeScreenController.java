@@ -40,4 +40,9 @@ public class HomeScreenController {
     {
         Platform.exit();
     }
+
+    public void touchScreenPress (ActionEvent event) throws IOException
+    {
+        managerButton.setStyle("-fx-background-color: red ");
+    }
 }
