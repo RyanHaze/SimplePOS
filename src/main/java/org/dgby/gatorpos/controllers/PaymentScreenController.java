@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
+import javafx.scene.input.TouchEvent;
 import org.dgby.gatorpos.SceneManager;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ public class PaymentScreenController {
 
     public void initialize()
     {
-        cashTendered_tf.getProperties().put(FXVK.VK_TYPE_PROP_KEY, "numeric");
+
     }
 
     // Employee button method
@@ -25,7 +26,13 @@ public class PaymentScreenController {
 
     }
 
+    public void enter_Cash (ActionEvent event) throws  IOException{
+        cashTendered_tf.getProperties().put(FXVK.VK_TYPE_PROP_KEY, "numeric");
+    }
+    public void touch_Cash (TouchEvent event) throws IOException{
 
+        cashTendered_tf.getProperties().put(FXVK.VK_TYPE_PROP_KEY, "numeric");
+    }
 
 
 }
