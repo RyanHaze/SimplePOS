@@ -130,9 +130,9 @@
         <configuration>
           <release>11</release>
           <compilerArgs>
-            <arg>-Dcom.sun.javafx.isEmbedded=true</arg>
-            <arg>-Dcom.sun.javafx.touch=true</arg>
-            <arg>-Dcom.sun.javafx.virtualKeyboard=javafx</arg>
+            <arguement>-Dcom.sun.javafx.isEmbedded=true</arguement>
+            <arguement>-Dcom.sun.javafx.touch=true</arguement>
+            <arguement>-Dcom.sun.javafx.virtualKeyboard=javafx</arguement>
           </compilerArgs>
         </configuration>
       </plugin>
