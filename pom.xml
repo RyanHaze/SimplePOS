@@ -143,6 +143,11 @@
           </execution>
         </executions>
         <configuration>
+          <arguments>
+            <argument>-Dcom.sun.javafx.isEmbedded=true</argument>
+            <argument>-Dcom.sun.javafx.touch=true</argument>
+            <argument>-Dcom.sun.javafx.virtualKeyboard=javafx</argument>
+          </arguments>
           <mainClass>org.dgby.gatorpos.MainApp</mainClass>
         </configuration>
       </plugin>
