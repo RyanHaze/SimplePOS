@@ -20,6 +20,8 @@ public class MainApp extends Application {
                         FXMLLoader.load(getClass().getResource("views/UserTransaction.fxml")), 1000, 600));
                 SceneManager.addScene("ProductManager", new Scene(
                         FXMLLoader.load(getClass().getResource("views/ProductManager.fxml")), 1000, 600));
+                SceneManager.addScene("PaymentScreen", new Scene(
+                        FXMLLoader.load(getClass().getResource("views/PaymentScreen.fxml")), 1000, 600));
 
                 primaryStage.setTitle("GatorPOS");
                 primaryStage.setFullScreen(false);

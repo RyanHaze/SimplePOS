@@ -53,6 +53,12 @@ public class UserTransactionController {
     */
     }
 
+
+    public void donePushed(ActionEvent event)
+    {
+        SceneManager.getInstance().activate("PaymentScreen");
+    }
+
     public void touchScreenPress (TouchEvent event) throws IOException
     {
 
