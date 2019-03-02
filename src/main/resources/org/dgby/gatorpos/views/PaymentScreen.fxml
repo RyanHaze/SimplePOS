@@ -87,7 +87,7 @@
             <Separator orientation="VERTICAL" prefHeight="1.0" prefWidth="88.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768);" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.rowSpan="6" />
             <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Main Tab Screen" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
             <TextField prefHeight="5000.0" prefWidth="5000.0" promptText="Expiration Date" style="-fx-background-radius: 20;" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <TextField prefHeight="5000.0" prefWidth="5000.0" promptText="Cash Tendered" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <TextField fx:id="cashTendered_tf" prefHeight="5000.0" prefWidth="5000.0" promptText="Cash Tendered" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <TextField prefHeight="5000.0" prefWidth="5000.0" promptText="Credit Card Number" style="-fx-background-radius: 20;" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" text="CC #" GridPane.columnIndex="7" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" text="Exp Date" GridPane.columnIndex="7" GridPane.rowIndex="3" />
