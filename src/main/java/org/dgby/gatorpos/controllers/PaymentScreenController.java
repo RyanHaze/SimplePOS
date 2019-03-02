@@ -21,9 +21,7 @@ public class PaymentScreenController {
 
     // Employee button method
     public void backToCurrentTab(ActionEvent event) throws IOException {
-        SceneManager.getInstance().activate("UserTransaction");
-
-
+        SceneManager.getInstance().changeParent("UserTransaction");
     }
 
     public void enter_Cash (ActionEvent event) throws  IOException{

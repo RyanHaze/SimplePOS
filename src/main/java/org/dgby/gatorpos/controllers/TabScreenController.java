@@ -12,6 +12,6 @@ public class TabScreenController {
     private Button fastCash;
 
     public void fastCashTransaction(ActionEvent event) throws IOException {
-        SceneManager.getInstance().activate("UserTransaction");
+        SceneManager.getInstance().changeParent("UserTransaction");
     }
 }

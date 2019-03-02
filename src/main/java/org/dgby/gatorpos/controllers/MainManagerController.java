@@ -27,15 +27,15 @@ public class MainManagerController {
 
     // loads a tableview of all employees
     public void change_Add_Employee(ActionEvent event) throws IOException {
-        SceneManager.getInstance().activate("EmployeeManager");
+        SceneManager.getInstance().changeParent("EmployeeManager");
     }
 
     public void back_to_home(ActionEvent event) throws IOException {
-        SceneManager.getInstance().activate("Home");
+        SceneManager.getInstance().changeParent("Home");
     }
 
     public void change_Product_manager(ActionEvent event) throws IOException
     {
-        SceneManager.getInstance().activate("ProductManager");
+        SceneManager.getInstance().changeParent("ProductManager");
     }
 }

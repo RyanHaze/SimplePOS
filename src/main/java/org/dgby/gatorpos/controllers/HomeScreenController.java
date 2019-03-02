@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 import javafx.scene.input.TouchEvent;
+import javafx.stage.Stage;
 import org.dgby.gatorpos.SceneManager;
 
 public class HomeScreenController {
@@ -15,6 +16,7 @@ public class HomeScreenController {
      * This class Controls the Home Screen. The home Screen consists of an Employee
      * and Manager Button that takes the user to the corresponding Screens.
      */
+
 
     // Declare the buttons (may not need to do this)
     @FXML
@@ -30,11 +32,12 @@ public class HomeScreenController {
 
     // Employee button method
     public void employeeButtonPressed(ActionEvent event) throws IOException {
-        SceneManager.getInstance().activate("Tab");
+
+        SceneManager.getInstance().changeParent("Tab");
     }
 
     public void managerButtonPressed(ActionEvent event) throws IOException {
-        SceneManager.getInstance().activate("MainManager");
+        SceneManager.getInstance().changeParent("MainManager");
     }
 
     public void exitButtonPressed(ActionEvent event )throws IOException

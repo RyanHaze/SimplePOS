@@ -28,10 +28,8 @@ public class UserTransactionController {
     @FXML
     private Accordion cart_accord;
 
-    @FXML
-    public void home_screen(ActionEvent event) {
-        SceneManager.getInstance().activate("Home");
-    }
+
+
 
     @FXML
     public void initialize() {
@@ -56,7 +54,10 @@ public class UserTransactionController {
 
     public void donePushed(ActionEvent event)
     {
-        SceneManager.getInstance().activate("PaymentScreen");
+        SceneManager.getInstance().changeParent("PaymentScreen");
+    }
+    public void home_screen(ActionEvent event) {
+        SceneManager.getInstance().changeParent("Home");
     }
 
     public void touchScreenPress (TouchEvent event) throws IOException

@@ -67,12 +67,12 @@ public class ProductManagerController
 
     public void back_to_mngr_functions_scrn(ActionEvent event) throws IOException
     {
-        SceneManager.getInstance().activate("MainManager");
+        SceneManager.getInstance().changeParent("MainManager");
     }
 
     public void back_to_home(ActionEvent event) throws IOException
     {
-        SceneManager.getInstance().activate("Home");
+        SceneManager.getInstance().changeParent("Home");
     }
 
 }
