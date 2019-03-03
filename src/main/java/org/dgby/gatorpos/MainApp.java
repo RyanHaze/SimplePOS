@@ -17,7 +17,7 @@ public class MainApp extends Application {
                 Parent root_EmployeeManager = FXMLLoader.load(getClass().getResource("views/EmployeeManager.fxml"));
                 Parent root_UserTransaction = FXMLLoader.load(getClass().getResource("views/UserTransaction.fxml"));
                 Parent root_ProductManager = FXMLLoader.load(getClass().getResource("views/ProductManager.fxml"));
-                Parent root_PaymentScreen = FXMLLoader.load(getClass().getResource("views/PaymentScreen.fxml"));
+                Parent root_TransactionManager = FXMLLoader.load(getClass().getResource("views/TransactionManager.fxml"));
 
                 // add the parent to a hashmap for setting roots later
                 SceneManager.addParent("Home", root_Home);
@@ -26,7 +26,7 @@ public class MainApp extends Application {
                 SceneManager.addParent("EmployeeManager", root_EmployeeManager);
                 SceneManager.addParent("UserTransaction", root_UserTransaction);
                 SceneManager.addParent("ProductManager", root_ProductManager);
-                SceneManager.addParent("PaymentScreen", root_PaymentScreen);
+                SceneManager.addParent("TransactionManager", root_TransactionManager);
 
                 // set the stage to fullscreen
                 primaryStage.setTitle("GatorPOS");

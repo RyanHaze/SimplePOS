@@ -7,56 +7,54 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-import javafx.scene.input.TouchEvent;
-import javafx.stage.Stage;
+import javafx.scene.control.Label;
 import org.dgby.gatorpos.SceneManager;
 
 public class HomeScreenController {
+
     /*
      * This class Controls the Home Screen. The home Screen consists of an Employee
-     * and Manager Button that takes the user to the corresponding Screens.
-     */
+     * and Manager Button that takes the user to the corresponding Screens. We will also
+     * implement a clock system at a later time. */
 
 
-    // Declare the buttons (may not need to do this)
+    // Button declarations
     @FXML
-    private Button managerButton;
+    private Button manager_Button, employee_Button, clock_in_out_Button, exit_Button;
+    // Label declarations
     @FXML
-    private Button employeeButton;
+    private Label title_label, version_label, creator_label;
 
-    // initialize method
+    // Nothing needs to be initialized on the home screen
     @FXML
-    public void initialize() {
+    public void initialize() {}
 
-    }
-
-    // Employee button method
+    // Take user to employee scene
     public void employeeButtonPressed(ActionEvent event) throws IOException {
-
         SceneManager.getInstance().changeParent("Tab");
     }
 
+    // Take user to manager scene
     public void managerButtonPressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().changeParent("MainManager");
     }
 
+    // Exit the application
     public void exitButtonPressed(ActionEvent event )throws IOException
     {
         Platform.exit();
     }
 
+    /* Todo: Maybe make the buttons highlight on text screen (think about)
     public void touchScreenPress (TouchEvent event) throws IOException
     {
-        managerButton.setStyle("-fx-background-color: grey ");
+
     }
     public void touchScreenRelease (TouchEvent event) throws IOException
     {
-        managerButton.setStyle("-fx-background-color: linear-gradient(#ffd65b, #e68400),\n" +
-                "    linear-gradient(#ffef84, #f2ba44),\n" +
-                "    linear-gradient(#ffea6a, #efaa22),\n" +
-                "    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),\n" +
-                "    linear-gradient(from 0% 0% to 15% 50%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));");
+
     }
+    */
 
 
 }

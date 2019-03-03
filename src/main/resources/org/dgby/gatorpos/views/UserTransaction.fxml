@@ -1,205 +1,263 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: midnightblue;" stylesheets="@orangeButton.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dgby.gatorpos.controllers.UserTransactionController">
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dgby.gatorpos.controllers.UserTransactionController">
+   <children>
+      <GridPane hgap="3.0" layoutX="5.0" opacity="0.96" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768); -fx-background-radius: 35;" stylesheets="@css/uilabels.css" vgap="3.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="223.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Accordion fx:id="cart_accord" prefHeight="313.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <panes>
-                        <TitledPane fx:id="cart_tp" alignment="CENTER" animated="false" prefHeight="5000.0" prefWidth="5000.0" text="Set the tab name">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="5000.0" prefWidth="5000.0">
-                                 <children>
-                                    <Label alignment="TOP_LEFT" layoutX="16.6" layoutY="29.6" prefHeight="36.0" prefWidth="193.0" text="Items: " AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <ListView layoutX="-14.0" layoutY="46.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </TitledPane>
-                     </panes>
-                  </Accordion>
-                  <GridPane hgap="5.0" prefHeight="288.0" prefWidth="200.0" vgap="5.0" VBox.vgrow="ALWAYS">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Void Item" />
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#donePushed" prefHeight="5000.0" prefWidth="5000.0" text="Done" GridPane.columnIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$5.00" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$10.00" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Settle" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Cash" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$20.00" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Tab Screen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$50.00" GridPane.rowIndex="4" />
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#home_screen" prefHeight="5000.0" prefWidth="5000.0" text="Home Screen" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                     </children>
-                  </GridPane>
-               </children>
-            </VBox>
-         </children>
-      </AnchorPane>
-   </left>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <TabPane prefHeight="600.0" prefWidth="801.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="500.0" tabMaxWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" style="-fx-font-size: 15;" stylesheets="@css/uilabels.css" text="Fast Cash Tab" GridPane.columnSpan="4" />
+            <ListView prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 35;" GridPane.columnSpan="5" GridPane.rowIndex="3" GridPane.rowSpan="8" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="Tab # xxx" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$5.00" GridPane.columnSpan="2" GridPane.rowIndex="15" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$50.00" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="16" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$20.00" GridPane.columnSpan="2" GridPane.rowIndex="16" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="\$10.00" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="15" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Tender" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="CC on file: No" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <TextField promptText="\$Amount xx.xx" style="-fx-background-radius: 35;" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="Enter Amount:" GridPane.columnSpan="2" GridPane.rowIndex="12" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="Change:" GridPane.rowIndex="14" />
+            <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="\$ xx.xx" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+            <Button mnemonicParsing="false" onAction="#doneButtonPushed" prefHeight="5000.0" prefWidth="5000.0" text="Done" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2" />
+            <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Void" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Change Price" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="MSG:" GridPane.columnIndex="4" GridPane.rowIndex="14" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="good? error?" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="14" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Process Filed CC" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="9" GridPane.rowSpan="2" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="CC#:" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+            <TextField disable="true" promptText="CC number" style="-fx-background-radius: 35;" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="12" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="EXP:" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+            <TextField disable="true" promptText="Expiration Date" style="-fx-background-radius: 35;" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="13" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Process Entered CC" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="15" GridPane.rowSpan="2" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="Process cash -&gt;" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+            <TabPane prefHeight="5000.0" prefWidth="5000.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="250.0" tabMaxWidth="250.0" tabMinHeight="75.0" tabMinWidth="75.0" GridPane.columnIndex="8" GridPane.columnSpan="14" GridPane.rowSpan="18">
               <tabs>
-                <Tab text="cat1">
+                <Tab closable="false" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category 1">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <GridPane hgap="5.0" layoutX="176.0" layoutY="138.0" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <GridPane hgap="5.0" prefHeight="5000.0" prefWidth="5000.0" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="4" />
-                                    <Button fx:id="testButton" mnemonicParsing="false" onTouchPressed="#touchScreenPress" onTouchReleased="#touchScreenRelease" prefHeight="5000.0" prefWidth="5000.0" text="Button" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat1 Item X" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" style="-fx-font-size: 50;" text="Category 1" GridPane.columnIndex="1" GridPane.columnSpan="4" />
                                  </children>
+                                 <padding>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </padding>
                               </GridPane>
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="cat2">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <Tab closable="false" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category 2">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <GridPane hgap="5.0" layoutX="176.0" layoutY="138.0" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <GridPane hgap="5.0" prefHeight="5000.0" prefWidth="5000.0" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5000.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="5000.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="test" GridPane.columnIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="5" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" GridPane.rowIndex="4" />
-                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Button" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.rowIndex="3" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="cat2 Item X" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" style="-fx-font-size: 50;" text="Category 2" GridPane.columnIndex="1" GridPane.columnSpan="4" />
                                  </children>
+                                 <padding>
+                                    <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                                 </padding>
                               </GridPane>
                            </children>
                         </AnchorPane>
-                     </content>
+                  </content>
+                </Tab>
+                  <Tab style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category X">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category X">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category X">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category X">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category X">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
+                  <Tab style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" text="Category X">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
                   </Tab>
               </tabs>
             </TabPane>
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="Date: " GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Label prefHeight="5000.0" prefWidth="5000.0" stylesheets="@css/uilabels.css" text="Total:  xx.xx" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Ready to pay" GridPane.columnSpan="5" GridPane.rowIndex="11" />
+            <ImageView fitHeight="96.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@images/sun.png" />
+               </image>
+            </ImageView>
          </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
+      </GridPane>
+   </children>
+</AnchorPane>

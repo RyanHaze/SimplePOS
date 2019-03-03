@@ -1,0 +1,41 @@
+.label{
+
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(#ffd65b, #e68400),
+    linear-gradient(#ffef84, #f2ba44),
+    linear-gradient(#ffea6a, #efaa22),
+    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+
+}
+.button{
+
+    -fx-background-color: linear-gradient(#ffd65b, #e68400),
+    linear-gradient(#ffef84, #f2ba44),
+    linear-gradient(#ffea6a, #efaa22),
+    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+    -fx-background-radius: 35;
+    -fx-background-insets: 0, 1, 2, 3, 0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 10 20 10 20;
+}
+
+
+.button:pressed{
+    -fx-background-color: grey;
+}
+
+.tab-pane *.tab-header-background{
+    -fx-background-color: transparent;
+    -fx-background-radius: 35;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator
+{
+    -fx-border-color: #000100;
+    -fx-border-width: 5;
+}

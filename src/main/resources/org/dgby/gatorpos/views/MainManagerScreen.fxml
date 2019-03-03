@@ -3,38 +3,52 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@orangeButton.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dgby.gatorpos.controllers.MainManagerController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),    linear-gradient(#ffef84, #f2ba44),    linear-gradient(#ffea6a, #efaa22),    linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%);" stylesheets="@css/FinalHomeDesign.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.dgby.gatorpos.controllers.MainManagerController">
    <children>
-      <GridPane alignment="CENTER" hgap="50.0" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="10000.0" prefWidth="10000.0" style="-fx-background-color: midnightblue;" vgap="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <columnConstraints>
+      <GridPane hgap="5.0" opacity="0.96" prefHeight="5000.0" prefWidth="5000.0" style="-fx-background-color: #000000,        linear-gradient(#7ebcea, #2f4b8f),        linear-gradient(#426ab7, #263e75),        linear-gradient(#395cab, #223768); -fx-background-radius: 35;" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+        <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="418.0" minHeight="0.0" prefHeight="54.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="418.0" minHeight="10.0" prefHeight="286.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Button fx:id="change_Add_Employees" mnemonicParsing="false" onAction="#change_Add_Employee" prefHeight="5000.0" prefWidth="5000.0" text="Change/Add Employees" GridPane.rowIndex="1" />
-            <Button fx:id="add_Remove_Items" mnemonicParsing="false" onAction="#change_Product_manager" prefHeight="5000.0" prefWidth="5000.0" text="Add/Remove Items" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Transaction History" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="homeScreen" mnemonicParsing="false" onAction="#back_to_home" prefHeight="5000.0" prefWidth="5000.0" text="Home Screen" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" text="Manager Functions" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="2147483647">
-               <font>
-                  <Font name="Arial Bold Italic" size="36.0" />
-               </font>
-            </Label>
+            <Button fx:id="change_Add_Employees_Button" mnemonicParsing="false" onAction="#change_Add_Employee" prefHeight="5000.0" prefWidth="5000.0" text="Chang/Add Employee" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <Button fx:id="change_Add_Items_Button" mnemonicParsing="false" onAction="#change_Product_manager" prefHeight="5000.0" prefWidth="5000.0" text="Change/Add Product" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <Button fx:id="transaction_Manager_Button" mnemonicParsing="false" onAction="#trans_Manager_Pressed" prefHeight="5000.0" prefWidth="5000.0" text="Transaction manager" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <Button fx:id="adjust_Timecards_Button" mnemonicParsing="false" prefHeight="5000.0" prefWidth="5000.0" text="Adjust Timecards" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <Label fx:id="manager_Functions_Label" alignment="CENTER" prefHeight="5000.0" prefWidth="5000.0" text="Manager Functions" GridPane.columnIndex="2" GridPane.columnSpan="4" />
+            <ImageView fitHeight="146.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+               <image>
+                  <Image url="@images/sun.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6">
+               <image>
+                  <Image url="@images/stronggator.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="home_Button" mnemonicParsing="false" onAction="#back_to_home" prefHeight="5000.0" prefWidth="5000.0" text="Back Home" GridPane.columnIndex="2" GridPane.columnSpan="4" GridPane.rowIndex="3" />
          </children>
          <padding>
-            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </GridPane>
    </children>

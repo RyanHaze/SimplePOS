@@ -1,0 +1,10 @@
+
+.label{
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+.text-field
+{
+    -fx-background-radius: 35;
+}
