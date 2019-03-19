@@ -14,7 +14,7 @@ public class TabScreenController {
 
     // Declare the Buttons
     @FXML
-    private Button startCC_Button, fastCash_Button, selectedTab_Button, deleteTab_Button, home_Button;
+    private Button startCC_Button, fastCash_Button, selectedTab_Button, deleteTab_Button, home_Button, startTab_Button;
 
     @FXML
     private TextField name_TF, cc_TF, expDate_TF;
