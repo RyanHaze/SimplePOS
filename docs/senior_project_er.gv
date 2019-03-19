@@ -1,0 +1,75 @@
+graph {
+    graph [overlap=false];
+    node [shape=ellipse];
+
+    subgraph {
+        employee_id -- employee;
+        employee_fname -- employee;
+        employee_lname -- employee;
+        employee_code -- employee;
+
+        employee_id [label=<<u>id</u>>];
+        employee_fname [label="fname"];
+        employee_lname [label="lname"];
+        employee_code [label="code"];
+
+        employee [shape=box];
+    }
+
+    subgraph {
+        product_id -- product;
+        product_name -- product;
+        product_description -- product;
+        product_price -- product;
+        product_catagory -- product;
+
+        product_id [label=<<u>id</u>>];
+        product_name [label="name"];
+        product_description [label="description"];
+        product_price [label="price"];
+        product_catagory [label="catagory"];
+
+        product [shape=box];
+    }
+
+    subgraph {
+        tab_id -- tab;
+        tab_open -- tab;
+        tab_close -- tab;
+        tab_note -- tab;
+
+        tab_id [label=<<u>id</u>>];
+        tab_open [label="open"];
+        tab_close [label="close"];
+        tab_note [label="note"];
+
+        subgraph {
+            tab -- card_lastfour;
+            tab -- card_data;
+            tab -- cash;
+
+            card_lastfour [label="card_last_four"];
+            card_data [label="card_data",color="green"];
+        }
+
+        subgraph {
+            handles -- employee [label="(1,1)"];
+            handles -- tab [label="(1,*)"];
+
+            handles [shape=diamond,label="handles"];
+        }
+
+        subgraph {
+            in_count -- in;
+
+            in_count [label="count"];
+
+            in -- product [label="(1,*)"];
+            in -- tab [label="(1,*)"];
+
+            in [shape=diamond,label="in"];
+        }
+
+        tab [shape=box];
+    }
+}
