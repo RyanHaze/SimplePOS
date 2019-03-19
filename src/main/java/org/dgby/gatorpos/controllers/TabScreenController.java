@@ -11,11 +11,6 @@ import org.dgby.gatorpos.SceneManager;
 public class TabScreenController {
 
     //todo: need to declare list view and obviously backend stuff
-
-    // Declare the Buttons
-    @FXML
-    private Button startCC_Button, fastCash_Button, selectedTab_Button, deleteTab_Button, home_Button, startTab_Button;
-
     @FXML
     private TextField name_TF, cc_TF, expDate_TF;
 
