@@ -70,10 +70,10 @@ public class TabScreenController {
         SceneManager.getInstance().changeParent("Home");
     }
 
-
-    public  void clear_Pressed(ActionEvent event) throws IOException{
+    public void clear_Pressed(ActionEvent event) throws IOException {
         name_TF.clear();
         cc_TF.clear();
         expDate_TF.clear();
+        name_TF.requestFocus();
     }
 }
