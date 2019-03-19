@@ -24,8 +24,9 @@ public class TabScreenController {
             if (!oldVal.equals(newVal) && newVal.length() > 10) {
                 String startVal = newVal.substring(0, 2);
                 String endVal = newVal.substring(newVal.length() - 1);
+                int q_count = newVal.length() - newVal.replace("?", "").length();
 
-                if (startVal.equals("%B") && endVal.equals("?")) {
+                if (startVal.equals("%B") && q_count > 2 && endVal.equals("?")) {
                     Map<String, String> ccMap = Track.track1Parser().parse(newVal);
 
                     if (ccMap.containsKey("DD")) {
