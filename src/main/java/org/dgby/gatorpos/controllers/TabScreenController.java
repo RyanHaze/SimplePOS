@@ -1,8 +1,8 @@
 package org.dgby.gatorpos.controllers;
 
 import javafx.fxml.FXML;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Map;
@@ -20,15 +20,21 @@ public class TabScreenController {
 
     @FXML
     public void initialize() {
-        ChangeListener<String> changeListener = new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue.substring(0, 3).equals("%B")
-                        || newValue.substring(oldValue.length() + 1, oldValue.length() + 3).equals("%B")) {
-                    Map<String, String> ccMap = Track.track1Parser().parse(newValue);
-                    name_TF.setText(ccMap.get("NAME"));
-                    cc_TF.setText(ccMap.get("PAN"));
-                    expDate_TF.setText(ccMap.get("ED"));
+        ChangeListener<String> changeListener = (obserable, oldVal, newVal) -> {
+            if (!oldVal.equals(newVal) && newVal.length() > 10) {
+                String startVal = newVal.substring(0, 2);
+                String endVal = newVal.substring(newVal.length() - 1);
+
+                if (startVal.equals("%B") && endVal.equals("?")) {
+                    Map<String, String> ccMap = Track.track1Parser().parse(newVal);
+
+                    if (ccMap.containsKey("DD")) {
+                        Platform.runLater(() -> {
+                            name_TF.setText(ccMap.get("NAME"));
+                            cc_TF.setText(ccMap.get("PAN"));
+                            expDate_TF.setText(ccMap.get("ED"));
+                        });
+                    }
                 }
             }
         };
