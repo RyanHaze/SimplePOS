@@ -21,7 +21,7 @@ public class TabScreenController {
     @FXML
     public void initialize() {
         ChangeListener<String> changeListener = (obserable, oldVal, newVal) -> {
-            if (!oldVal.equals(newVal) && newVal.length() > 10) {
+            if (!oldVal.equals(newVal) && newVal.length() > 3) {
                 String startVal = newVal.substring(0, 2);
                 String endVal = newVal.substring(newVal.length() - 1);
 
