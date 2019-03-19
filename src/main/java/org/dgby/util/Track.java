@@ -34,7 +34,7 @@ public class Track {
         }
     }
 
-    Map<String, String> parse(String data) {
+    public Map<String, String> parse(String data) {
         this.scanner = new Scanner(data);
         if (getChar() != startSentinel)
             System.out.println("There be dragons!");
@@ -91,21 +91,21 @@ public class Track {
         return getStringUntil(100, endSentinel);
     }
 
-    static Track track1Parser() {
+    public static Track track1Parser() {
         if (track1 == null)
             track1 = new Track('%', '?', '^', "FC", "PAN", "NAME", "ED", "SC", "DD");
 
         return track1;
     }
 
-    static Track track2Parser() {
+    public static Track track2Parser() {
         if (track2 == null)
             track2 = new Track(';', '?', '=', "PAN", "ED", "SC", "DD");
 
         return track2;
     }
 
-    static Track track3Parser() {
+    public static Track track3Parser() {
         if (track3 == null)
             track3 = new Track(';', '=', '?', "FC", "PAN", "DD");
 
