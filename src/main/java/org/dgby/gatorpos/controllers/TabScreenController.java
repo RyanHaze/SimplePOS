@@ -33,26 +33,26 @@ public class TabScreenController {
                 long q_count = newVal.chars().filter(ch -> ch == '?').count();
 
                 // q_count must be >= to 2, This means track 2 is also in the input.
-                if (startVal.equals("%B") && q_count >= 2 && endVal.equals("?")) {
-                    Map<String, String> ccMap = Track.track1Parser().parse(newVal);
+                if (q_count >= 2 && endVal.equals("?")) {
+                    if (startVal.equals("%B")) {
+                        Map<String, String> ccMap = Track.track1Parser().parse(newVal);
 
-                    if (ccMap.containsKey("DD")) {
+                        if (ccMap.containsKey("DD")) {
+                            Platform.runLater(() -> {
+                                name_TF.setText(ccMap.get("NAME"));
+                                cc_TF.setText(ccMap.get("PAN"));
+                                expDate_TF.setText(ccMap.get("ED"));
+                            });
+                        }
+                    }
+
+                    if (startVal.equals("%E")) {
                         Platform.runLater(() -> {
-                            name_TF.setText(ccMap.get("NAME"));
-                            cc_TF.setText(ccMap.get("PAN"));
-                            expDate_TF.setText(ccMap.get("ED"));
+                            // TODO: Make this an alert!
+                            name_TF.setText("Swipe Error, Try Again!");
+                            name_TF.selectAll();
                         });
                     }
-                }
-
-                if (startVal.equals("%E")) {
-                    Platform.runLater(() -> {
-                        // TODO: Make this an alert!
-                        name_TF.setText("Swipe Error, Try Again!");
-                        name_TF.selectAll();
-                        cc_TF.setText("");
-                        expDate_TF.setText("");
-                    });
                 }
             }
         };
