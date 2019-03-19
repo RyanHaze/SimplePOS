@@ -40,6 +40,16 @@ public class TabScreenController {
                         });
                     }
                 }
+
+                if (startVal.equals("%E")) {
+                    Platform.runLater(() -> {
+                        // TODO: Make this an alert!
+                        name_TF.setText("Swipe Error, Try Again!");
+                        name_TF.selectAll();
+                        cc_TF.setText("");
+                        expDate_TF.setText("");
+                    });
+                }
             }
         };
 
