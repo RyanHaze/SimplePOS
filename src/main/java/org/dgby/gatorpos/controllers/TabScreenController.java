@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Map;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.dgby.gatorpos.SceneManager;
 
@@ -17,6 +18,9 @@ public class TabScreenController {
     // todo: need to declare list view and obviously backend stuff
     @FXML
     private TextField name_TF, cc_TF, expDate_TF;
+
+    @FXML
+    private Button clear_Button;
 
     @FXML
     public void initialize() {
@@ -64,5 +68,12 @@ public class TabScreenController {
 
     public void homePressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().changeParent("Home");
+    }
+
+
+    public  void clear_Pressed(ActionEvent event) throws IOException{
+        name_TF.clear();
+        cc_TF.clear();
+        expDate_TF.clear();
     }
 }
