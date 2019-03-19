@@ -24,8 +24,11 @@ public class TabScreenController {
             if (!oldVal.equals(newVal) && newVal.length() > 10) {
                 String startVal = newVal.substring(0, 2);
                 String endVal = newVal.substring(newVal.length() - 1);
+
+                // We count the question marks, to test if track 2 is there or not.
                 long q_count = newVal.chars().filter(ch -> ch == '?').count();
 
+                // q_count must be >= to 2, This means track 2 is also in the input.
                 if (startVal.equals("%B") && q_count >= 2 && endVal.equals("?")) {
                     Map<String, String> ccMap = Track.track1Parser().parse(newVal);
 
