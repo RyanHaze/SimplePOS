@@ -112,8 +112,6 @@ public class UserTransactionController {
     // Reoder Button Pushed
     public void reorderButtonPushed(ActionEvent event) throws IOException {
         // TODO When an item is selected in the lisview duplicate it
-        if (TabScreenController.currentTab != null)
-            System.out.println(TabScreenController.currentTab.getNote());
     }
 
     // void Button Pushed
