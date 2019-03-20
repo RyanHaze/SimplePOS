@@ -109,11 +109,11 @@ public class TabScreenController {
     }
 
     private void displayMessage(String message, Integer seconds) {
-        mesg_Label.setText(message);
         if (timeline != null)
             timeline.stop();
 
-        timeline = new Timeline(new KeyFrame(Duration.seconds(seconds), new KeyValue(mesg_Label.textProperty(), "")));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0), new KeyValue(mesg_Label.textProperty(), message)),
+                new KeyFrame(Duration.seconds(seconds), new KeyValue(mesg_Label.textProperty(), "")));
         timeline.play();
     }
 
