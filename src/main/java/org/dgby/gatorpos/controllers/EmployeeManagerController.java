@@ -9,7 +9,6 @@ import org.dgby.gatorpos.models.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Font;
 
 public class EmployeeManagerController {
 
@@ -33,11 +32,9 @@ public class EmployeeManagerController {
     @FXML
     private Label title_Label;
 
-
     // Initialize is first called when the scene is loaded
     @FXML
     public void initialize() {
-
 
         employeeId_Col.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("id"));
         firstName_Col.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));

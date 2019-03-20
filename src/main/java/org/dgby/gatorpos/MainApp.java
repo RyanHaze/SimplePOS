@@ -3,7 +3,6 @@ package org.dgby.gatorpos;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -17,7 +16,8 @@ public class MainApp extends Application {
                 Parent root_EmployeeManager = FXMLLoader.load(getClass().getResource("views/EmployeeManager.fxml"));
                 Parent root_UserTransaction = FXMLLoader.load(getClass().getResource("views/UserTransaction.fxml"));
                 Parent root_ProductManager = FXMLLoader.load(getClass().getResource("views/ProductManager.fxml"));
-                Parent root_TransactionManager = FXMLLoader.load(getClass().getResource("views/TransactionManager.fxml"));
+                Parent root_TransactionManager = FXMLLoader
+                                .load(getClass().getResource("views/TransactionManager.fxml"));
 
                 // add the parent to a hashmap for setting roots later
                 SceneManager.addParent("Home", root_Home);
