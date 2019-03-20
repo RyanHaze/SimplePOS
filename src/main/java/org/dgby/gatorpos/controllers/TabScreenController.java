@@ -28,6 +28,9 @@ public class TabScreenController {
     ListView<Tab> ListView;
 
     @FXML
+    private Label mesg_Label;
+
+    @FXML
     public void initialize() {
         Tab.updateTabs();
         openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
@@ -69,6 +72,7 @@ public class TabScreenController {
         name_TF.textProperty().addListener(changeListener);
         cc_TF.textProperty().addListener(changeListener);
         expDate_TF.textProperty().addListener(changeListener);
+        mesg_Label.setText("");
 
     }
 
@@ -98,7 +102,7 @@ public class TabScreenController {
 
         currentTab = Tab.openTab(name);
         Tab.updateTabCardInfo(currentTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
-
+        mesg_Label.setText("");
         SceneManager.getInstance().changeParent("UserTransaction");
     }
 
@@ -106,9 +110,9 @@ public class TabScreenController {
         if (!listView.getSelectionModel().isEmpty()) {
             currentTab = (Tab) listView.getSelectionModel().getSelectedItem();
             SceneManager.getInstance().changeParent("UserTransaction");
+            mesg_Label.setText("");
         } else {
-            // TODO: Add alert!
-            System.out.println("No Tab Selected!");
+            mesg_Label.setText("No Tab Selected!");
         }
     }
 
@@ -120,9 +124,9 @@ public class TabScreenController {
             // Hacky >..>
             openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
             listView.setItems(openTabs);
+            mesg_Label.setText("");
         } else {
-            // TODO: Add alert!
-            System.out.println("No Tab Selected!");
+            mesg_Label.setText("No Tab Selected!");
         }
     }
 }
