@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import sun.jvm.hotspot.gc.shared.CollectedHeap;
 import javafx.event.ActionEvent;
 
 import org.dgby.gatorpos.SceneManager;
@@ -13,13 +12,10 @@ import org.dgby.gatorpos.models.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class UserTransactionController {
 
