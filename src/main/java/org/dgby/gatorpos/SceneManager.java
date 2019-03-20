@@ -2,11 +2,9 @@ package org.dgby.gatorpos;
 
 import java.util.HashMap;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.dgby.gatorpos.controllers.HomeScreenController;
 
 public class SceneManager {
     private static SceneManager instance = null;
@@ -22,17 +20,16 @@ public class SceneManager {
         parentMap.put(name, parent);
     }
 
-    //create the initial and ONLY scene
+    // create the initial and ONLY scene
     public void createInitialScene(String name) {
-        if (mainStage != null){
+        if (mainStage != null) {
             scene = new Scene(parentMap.get("Home"));
             mainStage.setScene(scene);
         }
     }
 
-    //change the root of the ONLY scene
-    public void changeParent(String name)
-    {
+    // change the root of the ONLY scene
+    public void changeParent(String name) {
         scene.setRoot(parentMap.get(name));
     }
 
