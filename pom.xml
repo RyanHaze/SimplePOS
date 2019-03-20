@@ -42,18 +42,16 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.1.1</version>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+          <configuration>
+            <release>11</release>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -105,35 +103,36 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.1</version>
-        <configuration>
-          <transformers>
-            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-              <mainClass>org.dgby.gatorpos.MainStub</mainClass>
-            </transformer>
-          </transformers>
-        </configuration>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
         <executions>
           <execution>
+            <id>unpack-dependencies</id>
             <phase>package</phase>
             <goals>
-              <goal>shade</goal>
+              <goal>unpack-dependencies</goal>
             </goals>
+            <configuration>
+              <excludeScope>system</excludeScope>
+              <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>
+              <outputDirectory>${project.build.directory}/classes</outputDirectory>
+            </configuration>
           </execution>
         </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.1</version>
         <configuration>
-          <release>11</release>
-          <compilerArgs>
-            <arguement>-Dcom.sun.javafx.isEmbedded=true</arguement>
-            <arguement>-Dcom.sun.javafx.touch=true</arguement>
-            <arguement>-Dcom.sun.javafx.virtualKeyboard=javafx</arguement>
-          </compilerArgs>
+          <excludes>
+            <exclude>**/*.properties</exclude>
+          </excludes>
+          <archive>
+            <manifest>
+              <mainClass>org.dgby.gatorpos.MainStub</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
       <plugin>
@@ -149,6 +148,29 @@
         </executions>
         <configuration>
           <mainClass>org.dgby.gatorpos.MainApp</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>org.dgby.gatorpos.MainStub</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
     </plugins>

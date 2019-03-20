@@ -23,7 +23,11 @@
 hs_err_pid*
 
 .idea
-.vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 .settings
 target/
 *.iml
