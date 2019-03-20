@@ -103,16 +103,26 @@ public class TabScreenController {
     }
 
     public void selectTabPressed(ActionEvent event) throws IOException {
-        currentTab = (Tab) listView.getSelectionModel().getSelectedItem();
-        SceneManager.getInstance().changeParent("UserTransaction");
+        if (!listView.getSelectionModel().isEmpty()) {
+            currentTab = (Tab) listView.getSelectionModel().getSelectedItem();
+            SceneManager.getInstance().changeParent("UserTransaction");
+        } else {
+            // TODO: Add alert!
+            System.out.println("No Tab Selected!");
+        }
     }
 
     public void closeTabPressed(ActionEvent event) throws IOException {
-        Tab selectedTab = (Tab) listView.getSelectionModel().getSelectedItem();
-        Tab.closeTab(selectedTab);
+        if (!listView.getSelectionModel().isEmpty()) {
+            Tab selectedTab = (Tab) listView.getSelectionModel().getSelectedItem();
+            Tab.closeTab(selectedTab);
 
-        // Hacky >..>
-        openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
-        listView.setItems(openTabs);
+            // Hacky >..>
+            openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
+            listView.setItems(openTabs);
+        } else {
+            // TODO: Add alert!
+            System.out.println("No Tab Selected!");
+        }
     }
 }
