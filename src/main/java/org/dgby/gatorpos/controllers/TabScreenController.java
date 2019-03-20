@@ -111,7 +111,8 @@ public class TabScreenController {
         Tab selectedTab = (Tab) listView.getSelectionModel().getSelectedItem();
         Tab.closeTab(selectedTab);
 
-        // Is there a way to update openTabs without re-setting the predicate?
-        openTabs.setPredicate(tab -> tab.getCloseDate() == null);
+        // Hacky >..>
+        openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
+        listView.setItems(openTabs);
     }
 }
