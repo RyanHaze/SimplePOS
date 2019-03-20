@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import sun.jvm.hotspot.gc.shared.CollectedHeap;
 import javafx.event.ActionEvent;
 
 import org.dgby.gatorpos.SceneManager;
@@ -12,6 +13,8 @@ import org.dgby.gatorpos.models.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,6 +54,7 @@ public class UserTransactionController {
 
         Map<String, Tab> categoryTabMap = new HashMap<>();
         List<String> productCategories = new ArrayList<>(Product.getCategories());
+        Collections.sort(productCategories);
         Integer i = 0;
         for (Tab tab : tabList) {
             String category = "Tab " + i.toString();
