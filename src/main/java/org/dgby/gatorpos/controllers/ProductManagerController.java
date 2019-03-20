@@ -32,7 +32,7 @@ public class ProductManagerController
 
     // Declare Buttons
     @FXML
-    private Button addNewProduct_Button, deleteProduct_Button, home_Button, back_Button;
+    private Button addNewProduct_Button, deleteProduct_Button, home_Button, back_Button, clear_Button, Done_Button;
 
     // Initialize upon scene start
     @FXML public void initialize()
@@ -77,13 +77,29 @@ public class ProductManagerController
     // Back to Manager scene
     public void back_to_mngr_functions_scrn(ActionEvent event) throws IOException
     {
+        clearTF();
         SceneManager.getInstance().changeParent("MainManager");
     }
 
     // Back to Home Screen
     public void back_to_home(ActionEvent event) throws IOException
     {
+        clearTF();
         SceneManager.getInstance().changeParent("Home");
+    }
+
+    // Clear the Text fields
+    public void clear_Pressed(ActionEvent event) throws IOException
+    {
+        clearTF();
+    }
+
+    private void clearTF()
+    {
+        prodName_TF.clear();
+        prodPrice_TF.clear();
+        prodCat_TF.clear();
+        prodDescription_TF.clear();
     }
 
 }
