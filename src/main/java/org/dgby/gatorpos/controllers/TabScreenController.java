@@ -1,11 +1,13 @@
 package org.dgby.gatorpos.controllers;
 
 import javafx.fxml.FXML;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,6 +20,7 @@ public class TabScreenController {
 
     public static Tab currentTab = null;
     FilteredList<Tab> openTabs;
+    private Timeline timeline = null;
 
     @FXML
     private ListView<Tab> listView;
@@ -102,17 +105,24 @@ public class TabScreenController {
 
         currentTab = Tab.openTab(name);
         Tab.updateTabCardInfo(currentTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
-        mesg_Label.setText("");
         SceneManager.getInstance().changeParent("UserTransaction");
+    }
+
+    private void displayMessage(String message, Integer seconds) {
+        mesg_Label.setText(message);
+        if (timeline != null)
+            timeline.stop();
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(seconds), new KeyValue(mesg_Label.textProperty(), "")));
+        timeline.play();
     }
 
     public void selectTabPressed(ActionEvent event) throws IOException {
         if (!listView.getSelectionModel().isEmpty()) {
             currentTab = (Tab) listView.getSelectionModel().getSelectedItem();
             SceneManager.getInstance().changeParent("UserTransaction");
-            mesg_Label.setText("");
         } else {
-            mesg_Label.setText("No Tab Selected!");
+            displayMessage("No Tab Selected!", 2);
         }
     }
 
@@ -124,9 +134,8 @@ public class TabScreenController {
             // Hacky >..>
             openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
             listView.setItems(openTabs);
-            mesg_Label.setText("");
         } else {
-            mesg_Label.setText("No Tab Selected!");
+            displayMessage("No Tab Selected!", 2);
         }
     }
 }
