@@ -5,6 +5,12 @@ import javafx.collections.*;
 
 import java.sql.SQLException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.dgby.gatorpos.ConnectionManager;
 
 public class Tab {
@@ -40,14 +46,22 @@ public class Tab {
         try {
             ConnectionManager.createTable("Tabs",
                     new String[] { "open_date TEXT NOT NULL", "close_date TEXT", "note TEXT" });
+            ConnectionManager.createTable("TabItems", new String[] { "tab_id INT", "product_id INT", "count INT" });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Tabs", resultSet -> {
                 while (resultSet.next()) {
-                    // TODO: Get products from other table.
+                    Integer tab_id = resultSet.getInt("id");
+                    ObservableMap<Integer, Integer> productMap = FXCollections.observableHashMap();
+
+                    ConnectionManager.executeQuery("SELECT * FROM TabItems WHERE tab_id = " + tab_id, resultSet2 -> {
+                        while (resultSet.next())
+                            productMap.put(resultSet.getInt("product_id"), resultSet.getInt("count"));
+                    });
+
                     tabList.add(new Tab(resultSet.getInt("id"), resultSet.getString("open_date"),
                             resultSet.getString("close_date"), resultSet.getString("note"),
                             resultSet.getString("card_lastfour"), resultSet.getString("card_data"),
-                            resultSet.getInt("cash"), null));
+                            resultSet.getInt("cash"), productMap));
                 }
             });
         } catch (SQLException sqlEx) {
@@ -59,37 +73,46 @@ public class Tab {
         return tabList;
     }
 
-    public static Integer openTab(String open_date, String note) {
+    private static String getCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    public static Tab getTab(Integer id) {
+        for (Tab tab : tabList) {
+            if (tab.getId() == id)
+                return tab;
+        }
+        return null;
+    }
+
+    public static Tab openTab(String note) {
         try {
-            Integer id = ConnectionManager.insertRow("Tabs", new String[] { "open_date", "note" },
-                    new Object[] { open_date, note });
+            Integer id = ConnectionManager.insertRow("Tabs", new String[] { "open_date", "note", "cash" },
+                    new Object[] { getCurrentDate(), note, 0 });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Tabs WHERE rowid = " + id, resultSet -> {
                 while (resultSet.next()) {
-                    // TODO: Get products from other table.
                     tabList.add(new Tab(resultSet.getInt("id"), resultSet.getString("open_date"),
                             resultSet.getString("close_date"), resultSet.getString("note"),
                             resultSet.getString("card_lastfour"), resultSet.getString("card_data"),
-                            resultSet.getInt("cash"), null));
+                            resultSet.getInt("cash"), FXCollections.observableHashMap()));
+
                 }
             });
 
-            return id;
+            return getTab(id);
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
-            return -1;
+            return null;
         }
     }
 
-    public static void closeTab(Integer id) {
+    public static void closeTab(Tab tab) {
         try {
-            // TODO: Write SQL for this.
-            ConnectionManager.executeQuery("", resultSet -> {
-                while (resultSet.next()) {
-                    // Lalala
-                }
-            });
-
+            ConnectionManager.executeUpdate(
+                    "UPDATE Tabs SET close_date = '" + getCurrentDate() + "' WHERE rowid = " + tab.getId());
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
         }
@@ -104,6 +127,44 @@ public class Tab {
         }
     }
 
+    public static void updateTabProduct(Tab tab, Product product, Integer count) {
+        try {
+            ConnectionManager.executeUpdate("UPDATE TabItems SET count = " + count + " WHERE tab_id = " + tab.getId()
+                    + " AND product_id = " + product.getId());
+        } catch (SQLException sqlEx) {
+            try {
+                ConnectionManager.insertRow("TabItems", new String[] { "tab_id", "product_id", "count" },
+                        new Object[] { tab.getId(), product.getId(), count });
+            } catch (SQLException sqlEx2) {
+                System.out.println(sqlEx2.getMessage());
+            }
+        }
+
+        tab.products.put(product.getId(), count);
+    }
+
+    public static void updateTabCash(Tab tab, Integer cash) {
+        try {
+            ConnectionManager.executeUpdate("UPDATE Tabs SET cash = " + cash + " WHERE rowid = " + tab.getId());
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getMessage());
+        }
+
+        tab.setCash(cash);
+    }
+
+    public static void updateTabCardInfo(Tab tab, String cardLastFour, String cardData) {
+        try {
+            ConnectionManager.executeUpdate("UPDATE Tabs SET card_lastfour = '" + cardLastFour + "', card_data = '"
+                    + cardData + "' WHERE rowid = " + tab.getId());
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getMessage());
+        }
+
+        tab.setCardData(cardData);
+        tab.setCardLastFour(cardLastFour);
+    }
+
     /**
      * @return the id
      */
@@ -112,7 +173,8 @@ public class Tab {
     }
 
     /**
-     * @param id the id to set
+     * @param id
+     *               the id to set
      */
     public void setId(Integer id) {
         this.id.set(id);
@@ -126,7 +188,8 @@ public class Tab {
     }
 
     /**
-     * @param openDate the open_date to set
+     * @param openDate
+     *                     the open_date to set
      */
     public void setOpenDate(String openDate) {
         this.open_date.set(openDate);
@@ -140,7 +203,8 @@ public class Tab {
     }
 
     /**
-     * @param closeDate the close_date to set
+     * @param closeDate
+     *                      the close_date to set
      */
     public void setCloseDate(String closeDate) {
         this.close_date.set(closeDate);
@@ -154,7 +218,8 @@ public class Tab {
     }
 
     /**
-     * @param note the note to set
+     * @param note
+     *                 the note to set
      */
     public void setNote(String note) {
         this.note.set(note);
@@ -168,7 +233,8 @@ public class Tab {
     }
 
     /**
-     * @param cardLastFour the card_lastfour to set
+     * @param cardLastFour
+     *                         the card_lastfour to set
      */
     public void setCardLastFour(String cardLastFour) {
         this.card_lastfour.set(cardLastFour);
@@ -182,9 +248,25 @@ public class Tab {
     }
 
     /**
-     * @param cardData the card_data to set
+     * @param cardData
+     *                     the card_data to set
      */
     public void setCardData(String cardData) {
         this.card_data.set(cardData);
+    }
+
+    /**
+     * @return the cash
+     */
+    public Integer getCash() {
+        return cash.get();
+    }
+
+    /**
+     * @param cash
+     *                 the cash to set
+     */
+    public void setCash(Integer cash) {
+        this.cash.set(cash);
     }
 }
