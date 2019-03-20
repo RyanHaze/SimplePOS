@@ -20,9 +20,6 @@ public class TabScreenController {
     private TextField name_TF, cc_TF, expDate_TF;
 
     @FXML
-    private Button clear_Button;
-
-    @FXML
     public void initialize() {
         ChangeListener<String> changeListener = (obserable, oldVal, newVal) -> {
             if (!oldVal.equals(newVal) && newVal.length() > 3) {
@@ -63,6 +60,9 @@ public class TabScreenController {
     }
 
     public void fastCashPressed(ActionEvent event) throws IOException {
+
+        // TODO: this should also create a tab with a default named value
+
         SceneManager.getInstance().changeParent("UserTransaction");
     }
 
@@ -76,4 +76,22 @@ public class TabScreenController {
         expDate_TF.clear();
         name_TF.requestFocus();
     }
+
+
+
+    public void start_Tab_Pressed(ActionEvent event) throws IOException{
+        // create the tab stuff goes here
+        // TODO: populate the listview
+    }
+
+    public void goto_Selected_Tab(ActionEvent event) throws IOException{
+        // TODO: go to the selected tab in the listview
+    }
+
+    public void delete_Selected_Tab{
+        // TODO: delete selected tab from the lsitview and the database ?? not sure if we actually want this so dont worry for now
+
+    }
+
+
 }
