@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Map;
 
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.dgby.gatorpos.SceneManager;
 
@@ -60,9 +59,7 @@ public class TabScreenController {
     }
 
     public void fastCashPressed(ActionEvent event) throws IOException {
-
         // TODO: this should also create a tab with a default named value
-
         SceneManager.getInstance().changeParent("UserTransaction");
     }
 
@@ -77,21 +74,17 @@ public class TabScreenController {
         name_TF.requestFocus();
     }
 
-
-
-    public void start_Tab_Pressed(ActionEvent event) throws IOException{
+    public void start_Tab_Pressed(ActionEvent event) throws IOException {
         // create the tab stuff goes here
         // TODO: populate the listview
     }
 
-    public void goto_Selected_Tab(ActionEvent event) throws IOException{
+    public void goto_Selected_Tab(ActionEvent event) throws IOException {
         // TODO: go to the selected tab in the listview
     }
 
-    public void delete_Selected_Tab{
-        // TODO: delete selected tab from the lsitview and the database ?? not sure if we actually want this so dont worry for now
-
+    public void delete_Selected_Tab(ActionEvent event) throws IOException {
+        // TODO: delete selected tab from the lsitview and the database ?? not sure if
+        // we actually want this so dont worry for now
     }
-
-
 }
