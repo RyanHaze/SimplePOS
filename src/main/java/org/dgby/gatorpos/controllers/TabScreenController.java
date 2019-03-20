@@ -1,22 +1,36 @@
 package org.dgby.gatorpos.controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.dgby.gatorpos.SceneManager;
 
+import org.dgby.gatorpos.models.Tab;
 import org.dgby.util.Track;
 
 public class TabScreenController {
 
+    private String ccNum;
+    private String grabbedName;
+    private Date date;
+    private SimpleDateFormat formatter;
+    private String expdate;
+
     // todo: need to declare list view and obviously backend stuff
     @FXML
     private TextField name_TF, cc_TF, expDate_TF;
+
+    @FXML
+    ListView tabListView = new ListView();
 
     @FXML
     public void initialize() {
@@ -56,6 +70,7 @@ public class TabScreenController {
         name_TF.textProperty().addListener(changeListener);
         cc_TF.textProperty().addListener(changeListener);
         expDate_TF.textProperty().addListener(changeListener);
+
     }
 
     public void fastCashPressed(ActionEvent event) throws IOException {
@@ -75,12 +90,46 @@ public class TabScreenController {
     }
 
     public void start_Tab_Pressed(ActionEvent event) throws IOException {
-        // create the tab stuff goes here
-        // TODO: populate the listview
+        // Need to get the current date time
+        formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        date = new Date();
+
+        // Need name from name text field
+        grabbedName = name_TF.getText();
+        if (grabbedName.equals(""))
+            grabbedName = "badName";
+        // Check if the CC field is 16 digits
+        if (cc_TF.getText().length() == 16) {
+            ccNum = cc_TF.getText();
+        }
+        else{
+            ccNum = null;
+        }
+        // Check if the date is 4 digits
+        if (expDate_TF.getText().length() == 4)
+        {
+            expdate=expDate_TF.getText();
+        }
+        else{
+            expdate = null;
+        }
+
+        // Info we have name, ccnum, expdate, datetime
+
+        // so now populate the listview for testing purposes
+        tabListView.getItems().addAll(grabbedName + "\t" + date + "\t" + ccNum + "\t" + expdate);
+
     }
 
     public void goto_Selected_Tab(ActionEvent event) throws IOException {
         // TODO: go to the selected tab in the listview
+
+
+        // Here we need to get the selected tab and set the passed information
+        //ObservableList selectedItem = tabListView.getSelectionModel().getSelectedIndices();
+
+
+
     }
 
     public void delete_Selected_Tab(ActionEvent event) throws IOException {
