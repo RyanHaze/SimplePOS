@@ -110,16 +110,21 @@ public class Tab {
     }
 
     public static void closeTab(Tab tab) {
+        String closeDate = getCurrentDate();
+
         try {
-            ConnectionManager.executeUpdate(
-                    "UPDATE Tabs SET close_date = '" + getCurrentDate() + "' WHERE rowid = " + tab.getId());
+            ConnectionManager
+                    .executeUpdate("UPDATE Tabs SET close_date = '" + closeDate + "' WHERE rowid = " + tab.getId());
         } catch (SQLException sqlEx) {
             System.out.println(sqlEx.getMessage());
         }
+
+        tab.setCloseDate(closeDate);
     }
 
     public static void deleteTab(Tab tab) {
         try {
+            System.out.println("DELETED TAB: " + tab.toString());
             tabList.remove(tab);
             ConnectionManager.executeUpdate("DELETE FROM Tabs WHERE rowid = " + tab.getId());
         } catch (SQLException sqlEx) {

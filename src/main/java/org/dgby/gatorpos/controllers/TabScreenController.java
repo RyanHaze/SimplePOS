@@ -3,6 +3,7 @@ package org.dgby.gatorpos.controllers;
 import javafx.fxml.FXML;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
@@ -16,6 +17,7 @@ import org.dgby.util.Track;
 public class TabScreenController {
 
     public static Tab currentTab = null;
+    FilteredList<Tab> openTabs;
 
     @FXML
     private ListView<Tab> listView;
@@ -28,7 +30,8 @@ public class TabScreenController {
     @FXML
     public void initialize() {
         Tab.updateTabs();
-        listView.setItems(Tab.getTabs());
+        openTabs = new FilteredList<>(Tab.getTabs(), tab -> tab.getCloseDate() == null);
+        listView.setItems(openTabs);
 
         ChangeListener<String> changeListener = (obserable, oldVal, newVal) -> {
             if (!oldVal.equals(newVal) && newVal.length() > 3) {
@@ -78,14 +81,14 @@ public class TabScreenController {
         SceneManager.getInstance().changeParent("Home");
     }
 
-    public void clear_Pressed(ActionEvent event) throws IOException {
+    public void clearPressed(ActionEvent event) throws IOException {
         name_TF.clear();
         cc_TF.clear();
         expDate_TF.clear();
         name_TF.requestFocus();
     }
 
-    public void start_Tab_Pressed(ActionEvent event) throws IOException {
+    public void openTabPressed(ActionEvent event) throws IOException {
         String name = name_TF.getText();
         String cc = cc_TF.getText();
         String expDate = expDate_TF.getText();
@@ -99,12 +102,16 @@ public class TabScreenController {
         SceneManager.getInstance().changeParent("UserTransaction");
     }
 
-    public void goto_Selected_Tab(ActionEvent event) throws IOException {
+    public void selectTabPressed(ActionEvent event) throws IOException {
         currentTab = (Tab) listView.getSelectionModel().getSelectedItem();
         SceneManager.getInstance().changeParent("UserTransaction");
     }
 
-    public void delete_Selected_Tab(ActionEvent event) throws IOException {
-        // TODO: Delete this? or implement a closeTab
+    public void closeTabPressed(ActionEvent event) throws IOException {
+        Tab selectedTab = (Tab) listView.getSelectionModel().getSelectedItem();
+        Tab.closeTab(selectedTab);
+
+        // Is there a way to update openTabs without re-setting the predicate?
+        openTabs.setPredicate(tab -> tab.getCloseDate() == null);
     }
 }
