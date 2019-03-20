@@ -16,9 +16,10 @@ public class MainManagerController {
 
     // declare the buttons
     @FXML
-    private Button change_Add_Employees_Button, change_Add_Items_Button, transaction_Manager_Button, adjust_Timecards_Button, home_Button;
+    private Button change_Add_Employees_Button, change_Add_Items_Button, transaction_Manager_Button,
+            adjust_Timecards_Button, home_Button;
 
-    //declare the labels
+    // declare the labels
     @FXML
     private Label manager_Functions_Label;
 
@@ -33,14 +34,12 @@ public class MainManagerController {
     }
 
     // change scene to ProductManager
-    public void change_Product_manager(ActionEvent event) throws IOException
-    {
+    public void change_Product_manager(ActionEvent event) throws IOException {
         SceneManager.getInstance().changeParent("ProductManager");
     }
 
-    //change scene to TransactionManager
-    public void trans_Manager_Pressed(ActionEvent event) throws IOException
-    {
+    // change scene to TransactionManager
+    public void trans_Manager_Pressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().changeParent("TransactionManager");
     }
 }

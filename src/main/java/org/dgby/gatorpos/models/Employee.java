@@ -26,7 +26,7 @@ public class Employee {
         employeeList.clear();
         try {
             ConnectionManager.createTable("Employees",
-                new String[] { "fname TEXT", "lname TEXT", "login INTEGER NOT NULL UNIQUE" });
+                    new String[] { "fname TEXT", "lname TEXT", "login INTEGER NOT NULL UNIQUE" });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Employees", resultSet -> {
                 while (resultSet.next())
