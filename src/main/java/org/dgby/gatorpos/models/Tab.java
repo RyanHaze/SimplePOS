@@ -44,8 +44,8 @@ public class Tab {
     public static void updateTabs() {
         tabList.clear();
         try {
-            ConnectionManager.createTable("Tabs",
-                    new String[] { "open_date TEXT NOT NULL", "close_date TEXT", "note TEXT" });
+            ConnectionManager.createTable("Tabs", new String[] { "open_date TEXT NOT NULL", "close_date TEXT",
+                    "note TEXT", "card_lastfour TEXT", "card_data TEXT", "cash INT" });
             ConnectionManager.createTable("TabItems", new String[] { "tab_id INT", "product_id INT", "count INT" });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Tabs", resultSet -> {
@@ -54,8 +54,8 @@ public class Tab {
                     ObservableMap<Integer, Integer> productMap = FXCollections.observableHashMap();
 
                     ConnectionManager.executeQuery("SELECT * FROM TabItems WHERE tab_id = " + tab_id, resultSet2 -> {
-                        while (resultSet.next())
-                            productMap.put(resultSet.getInt("product_id"), resultSet.getInt("count"));
+                        while (resultSet2.next())
+                            productMap.put(resultSet2.getInt("product_id"), resultSet2.getInt("count"));
                     });
 
                     tabList.add(new Tab(resultSet.getInt("id"), resultSet.getString("open_date"),
@@ -268,5 +268,10 @@ public class Tab {
      */
     public void setCash(Integer cash) {
         this.cash.set(cash);
+    }
+
+    @Override
+    public String toString() {
+        return getNote() + " - " + getCardLastFour();
     }
 }
