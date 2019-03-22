@@ -44,9 +44,13 @@ public class Tab {
     public static void updateTabs() {
         tabList.clear();
         try {
-            ConnectionManager.createTable("Tabs", new String[] { "open_date TEXT NOT NULL", "close_date TEXT",
-                    "note TEXT", "card_lastfour TEXT", "card_data TEXT", "cash INT" });
-            ConnectionManager.createTable("TabItems", new String[] { "tab_id INT", "product_id INT", "count INT" });
+            ConnectionManager.createTable("Tabs", new String[] {
+                    "open_date TEXT NOT NULL", "close_date TEXT", "note TEXT", "card_lastfour TEXT", "card_data TEXT",
+                    "cash INT"
+            });
+            ConnectionManager.createTable("TabItems", new String[] {
+                    "tab_id INT", "product_id INT", "count INT"
+            });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Tabs", resultSet -> {
                 while (resultSet.next()) {
@@ -89,8 +93,11 @@ public class Tab {
 
     public static Tab openTab(String note) {
         try {
-            Integer id = ConnectionManager.insertRow("Tabs", new String[] { "open_date", "note", "cash" },
-                    new Object[] { getCurrentDate(), note, 0 });
+            Integer id = ConnectionManager.insertRow("Tabs", new String[] {
+                    "open_date", "note", "cash"
+            }, new Object[] {
+                    getCurrentDate(), note, 0
+            });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Tabs WHERE rowid = " + id, resultSet -> {
                 while (resultSet.next()) {
@@ -138,8 +145,11 @@ public class Tab {
                     + " AND product_id = " + product.getId());
         } catch (SQLException sqlEx) {
             try {
-                ConnectionManager.insertRow("TabItems", new String[] { "tab_id", "product_id", "count" },
-                        new Object[] { tab.getId(), product.getId(), count });
+                ConnectionManager.insertRow("TabItems", new String[] {
+                        "tab_id", "product_id", "count"
+                }, new Object[] {
+                        tab.getId(), product.getId(), count
+                });
             } catch (SQLException sqlEx2) {
                 System.out.println(sqlEx2.getMessage());
             }
@@ -277,6 +287,12 @@ public class Tab {
 
     @Override
     public String toString() {
-        return getNote() + " - " + getCardLastFour();
+        String note = getNote();
+        String cardLastFour = getCardLastFour();
+
+        if (cardLastFour == null)
+            return note;
+
+        return note + " - " + cardLastFour;
     }
 }

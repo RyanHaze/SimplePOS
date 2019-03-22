@@ -16,7 +16,7 @@ import org.dgby.gatorpos.SceneManager;
 import org.dgby.gatorpos.models.Tab;
 import org.dgby.util.Track;
 
-import static org.dgby.util.Validator.isValid;
+import static org.dgby.util.CCValidator.isValid;
 
 public class TabScreenController {
 
@@ -75,12 +75,16 @@ public class TabScreenController {
         cc_TF.textProperty().addListener(changeListener);
         expDate_TF.textProperty().addListener(changeListener);
         mesg_Label.setText("");
-
     }
 
     public void fastCashPressed(ActionEvent event) throws IOException {
-        // TODO: this should also create a tab with a default named value
+        String name = name_TF.getText();
+        if (name.trim().length() == 0)
+            name = "No Name";
+
+        currentTab = Tab.openTab(name);
         SceneManager.getInstance().changeParent("UserTransaction");
+        clearTF();
     }
 
     public void homePressed(ActionEvent event) throws IOException {
@@ -99,34 +103,27 @@ public class TabScreenController {
         String cc = cc_TF.getText();
         String expDate = expDate_TF.getText();
 
-        if (name.trim().length() < 1)
-            name = "No Name";
-
         // Only want to update tab card info if card exists
-        if(cc.length() > 0) {
+        if (cc.length() > 0) {
             if (isValid(cc)) {
                 currentTab = Tab.openTab(name);
                 Tab.updateTabCardInfo(currentTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
                 SceneManager.getInstance().changeParent("UserTransaction");
+                clearTF();
             } else {
                 displayMessage("Invalid CC", 2);
+                cc_TF.selectAll();
+                cc_TF.requestFocus();
             }
         }
-        // Edge case that they want to start a tab with just a name instead of fast transaction
-        if(cc.length() == 0 && expDate.length() == 0)
-        {
-            currentTab = Tab.openTab(name);
-            Tab.updateTabCardInfo(currentTab, "NOCC", name + ":" + cc + ":" + expDate);
-            SceneManager.getInstance().changeParent("UserTransaction");
-        }
 
-        // Clear the TF's
-        clearTF();
+        // Treat as fastCash if cc fields are empty.
+        if (cc.length() == 0 && expDate.length() == 0)
+            fastCashPressed(event);
     }
 
     // Clear the text fields
-    private void clearTF()
-    {
+    private void clearTF() {
         name_TF.clear();
         cc_TF.clear();
         expDate_TF.clear();
