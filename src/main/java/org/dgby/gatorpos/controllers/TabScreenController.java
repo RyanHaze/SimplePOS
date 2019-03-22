@@ -16,6 +16,8 @@ import org.dgby.gatorpos.SceneManager;
 import org.dgby.gatorpos.models.Tab;
 import org.dgby.util.Track;
 
+import static org.dgby.util.Validator.isValid;
+
 public class TabScreenController {
 
     public static Tab currentTab = null;
@@ -26,9 +28,6 @@ public class TabScreenController {
     private ListView<Tab> listView;
     @FXML
     private TextField name_TF, cc_TF, expDate_TF;
-
-    @FXML
-    ListView<Tab> ListView;
 
     @FXML
     private Label mesg_Label;
@@ -103,9 +102,34 @@ public class TabScreenController {
         if (name.trim().length() < 1)
             name = "No Name";
 
-        currentTab = Tab.openTab(name);
-        Tab.updateTabCardInfo(currentTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
-        SceneManager.getInstance().changeParent("UserTransaction");
+        // Only want to update tab card info if card exists
+        if(cc.length() > 0) {
+            if (isValid(cc)) {
+                currentTab = Tab.openTab(name);
+                Tab.updateTabCardInfo(currentTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
+                SceneManager.getInstance().changeParent("UserTransaction");
+            } else {
+                displayMessage("Invalid CC", 2);
+            }
+        }
+        // Edge case that they want to start a tab with just a name instead of fast transaction
+        if(cc.length() == 0 && expDate.length() == 0)
+        {
+            currentTab = Tab.openTab(name);
+            Tab.updateTabCardInfo(currentTab, "NOCC", name + ":" + cc + ":" + expDate);
+            SceneManager.getInstance().changeParent("UserTransaction");
+        }
+
+        // Clear the TF's
+        clearTF();
+    }
+
+    // Clear the text fields
+    private void clearTF()
+    {
+        name_TF.clear();
+        cc_TF.clear();
+        expDate_TF.clear();
     }
 
     private void displayMessage(String message, Integer seconds) {
