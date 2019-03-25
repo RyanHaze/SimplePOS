@@ -14,6 +14,8 @@ public class CCValidator {
     }
 
     private static Map<ECardType, Pair<Integer, Integer>> validLength = new EnumMap<>(ECardType.class) {
+        private static final long serialVersionUID = 121088074870188678L;
+
         {
             put(ECardType.AMEX, new Pair<Integer, Integer>(15, 15));
             put(ECardType.DISC, new Pair<Integer, Integer>(16, 19));
