@@ -3,6 +3,8 @@ package org.dgby.gatorpos.controllers;
 import javafx.fxml.FXML;
 import javafx.animation.*;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -20,7 +22,8 @@ import static org.dgby.util.CCValidator.isValid;
 
 public class TabScreenController {
 
-    public static Tab currentTab = null;
+    public static ObjectProperty<Tab> currentTab = new SimpleObjectProperty<Tab>();
+
     FilteredList<Tab> openTabs;
     private Timeline timeline = null;
 
@@ -82,7 +85,7 @@ public class TabScreenController {
         if (name.trim().length() == 0)
             name = "No Name";
 
-        currentTab = Tab.openTab(name);
+        currentTab.set(Tab.openTab(name));
         SceneManager.getInstance().changeParent("UserTransaction");
         clearTF();
     }
@@ -106,8 +109,8 @@ public class TabScreenController {
         // Only want to update tab card info if card exists
         if (cc.length() > 0) {
             if (isValid(cc)) {
-                currentTab = Tab.openTab(name);
-                Tab.updateTabCardInfo(currentTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
+                currentTab.set(Tab.openTab(name));
+                Tab.updateTabCardInfo(currentTab.get(), cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
                 SceneManager.getInstance().changeParent("UserTransaction");
                 clearTF();
             } else {
@@ -140,7 +143,7 @@ public class TabScreenController {
 
     public void selectTabPressed(ActionEvent event) throws IOException {
         if (!listView.getSelectionModel().isEmpty()) {
-            currentTab = (Tab) listView.getSelectionModel().getSelectedItem();
+            currentTab.set((Tab) listView.getSelectionModel().getSelectedItem());
             SceneManager.getInstance().changeParent("UserTransaction");
         } else {
             displayMessage("No Tab Selected!", 2);

@@ -40,6 +40,13 @@ public class UserTransactionController {
 
     @FXML
     public void initialize() {
+        TabScreenController.currentTab.addListener((obs, oldValue, newValue) -> {
+            if (newValue != null) {
+                tabName_Label.setText(newValue.getNote());
+                date_Label.setText(newValue.getOpenDate().toString());
+                ccStored_Label.setText(newValue.getCardLastFour());
+            }
+        });
         Product.updateProducts();
 
         for (Tab tab : tabPane.getTabs()) {
@@ -90,9 +97,10 @@ public class UserTransactionController {
         }
 
         // Create node array for disabline and enabling easier
-        disable_enable_paymentNodes = new Node[] { storedcc_Button, newcc_Button, clear_Button, tender_Button,
-                exactCash_Button, tenFC_Button, twentyFC_Button, fiftyFC_Button, hundredFC_Button, amount_TF, ccNum_TF,
-                expDate_TF };
+        disable_enable_paymentNodes = new Node[] {
+                storedcc_Button, newcc_Button, clear_Button, tender_Button, exactCash_Button, tenFC_Button,
+                twentyFC_Button, fiftyFC_Button, hundredFC_Button, amount_TF, ccNum_TF, expDate_TF
+        };
         disableNotReady();
     }
 

@@ -285,6 +285,21 @@ public class Tab {
         this.cash.set(cash);
     }
 
+    /**
+     * @return the products
+     */
+    public ObservableMap<Integer, Integer> getProducts() {
+        return products.get();
+    }
+
+    /**
+     * @param products
+     *                     the products to set
+     */
+    public void setProducts(SimpleMapProperty<Integer, Integer> products) {
+        this.products.set(products);
+    }
+
     @Override
     public String toString() {
         String note = getNote();
