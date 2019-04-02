@@ -109,8 +109,9 @@ public class TabScreenController {
         // Only want to update tab card info if card exists
         if (cc.length() > 0) {
             if (isValid(cc)) {
-                currentTab.set(Tab.openTab(name));
-                Tab.updateTabCardInfo(currentTab.get(), cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
+                Tab newTab = Tab.openTab(name);
+                Tab.updateTabCardInfo(newTab, cc.substring(cc.length() - 4), name + ":" + cc + ":" + expDate);
+                currentTab.set(newTab);
                 SceneManager.getInstance().changeParent("UserTransaction");
                 clearTF();
             } else {
