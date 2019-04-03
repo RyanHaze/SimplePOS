@@ -39,8 +39,9 @@ public class Product {
             list.clear();
 
         try {
-            ConnectionManager.createTable("Products",
-                    new String[] { "name TEXT", "price INTEGER", "description TEXT", "category TEXT" });
+            ConnectionManager.createTable("Products", new String[] {
+                    "name TEXT", "price INTEGER", "description TEXT", "category TEXT"
+            });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Products", resultSet -> {
                 while (resultSet.next()) {
@@ -70,9 +71,11 @@ public class Product {
 
     public static void addProduct(String name, Integer price, String description, String category) {
         try {
-            Integer id = ConnectionManager.insertRow("Products",
-                    new String[] { "name", "price", "description", "category" },
-                    new Object[] { name, price, description, category });
+            Integer id = ConnectionManager.insertRow("Products", new String[] {
+                    "name", "price", "description", "category"
+            }, new Object[] {
+                    name, price, description, category
+            });
 
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Products WHERE rowid = " + id, resultSet -> {
                 while (resultSet.next()) {
@@ -104,7 +107,8 @@ public class Product {
     }
 
     /**
-     * @param id the id to set
+     * @param id
+     *               the id to set
      */
     public void setId(Integer id) {
         this.id.set(id);
@@ -118,7 +122,8 @@ public class Product {
     }
 
     /**
-     * @param name the name to set
+     * @param name
+     *                 the name to set
      */
     public void setName(String name) {
         this.name.set(name);
@@ -132,7 +137,8 @@ public class Product {
     }
 
     /**
-     * @param price the price to set
+     * @param price
+     *                  the price to set
      */
     public void setPrice(Integer price) {
         this.price.set(price);
@@ -146,7 +152,8 @@ public class Product {
     }
 
     /**
-     * @param description the description to set
+     * @param description
+     *                        the description to set
      */
     public void setDescription(String description) {
         this.description.set(description);
@@ -160,10 +167,21 @@ public class Product {
     }
 
     /**
-     * @param category the category to set
+     * @param category
+     *                     the category to set
      */
     public void setCategory(String category) {
         this.category.set(category);
     }
 
+    private static String formatPrice(Integer price) {
+        Integer cents = price % 100;
+        Integer dollars = price / 100;
+        return String.format("$%d.%02d", dollars, cents);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%-15s   |%15s", getName(), formatPrice(getPrice()));
+    }
 }

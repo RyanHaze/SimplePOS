@@ -2,6 +2,7 @@ package org.dgby.gatorpos.models;
 
 import javafx.beans.property.*;
 import javafx.collections.*;
+import javafx.util.Pair;
 
 import java.sql.SQLException;
 
@@ -23,7 +24,7 @@ public class Tab {
     private StringProperty card_data;
     private IntegerProperty cash;
 
-    private SimpleMapProperty<Integer, Integer> products;
+    private SimpleListProperty<Pair<Product, Integer>> products;
 
     private static ObservableList<Tab> tabList = FXCollections.observableArrayList();
 
@@ -38,7 +39,7 @@ public class Tab {
         this.card_data = new SimpleStringProperty(card_data);
         this.cash = new SimpleIntegerProperty(cash);
 
-        this.products = new SimpleMapProperty<Integer, Integer>(products);
+        this.products = new SimpleListProperty<Pair<Product, Integer>>(FXCollections.observableArrayList());
     }
 
     public static void updateTabs() {
@@ -155,7 +156,16 @@ public class Tab {
             }
         }
 
-        tab.products.put(product.getId(), count);
+        Integer index = -1;
+        for (Pair<Product, Integer> item : tab.products) {
+            if (item.getKey().getId() == product.getId()) {
+                index = tab.products.indexOf(item);
+                tab.products.set(index, new Pair<Product, Integer>(product, count));
+            }
+        }
+
+        if (index == -1)
+            tab.products.add(new Pair<Product, Integer>(product, count));
     }
 
     public static void updateTabCash(Tab tab, Integer cash) {
@@ -288,7 +298,7 @@ public class Tab {
     /**
      * @return the products
      */
-    public ObservableMap<Integer, Integer> getProducts() {
+    public ObservableList<Pair<Product, Integer>> getProducts() {
         return products.get();
     }
 
@@ -296,7 +306,7 @@ public class Tab {
      * @param products
      *                     the products to set
      */
-    public void setProducts(SimpleMapProperty<Integer, Integer> products) {
+    public void setProducts(ObservableList<Pair<Product, Integer>> products) {
         this.products.set(products);
     }
 

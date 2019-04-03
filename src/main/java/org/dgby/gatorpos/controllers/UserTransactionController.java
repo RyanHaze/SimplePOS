@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.util.Pair;
 import javafx.event.ActionEvent;
 
 import org.dgby.gatorpos.SceneManager;
@@ -36,6 +37,9 @@ public class UserTransactionController {
     @FXML
     private TextField amount_TF, ccNum_TF, expDate_TF;
 
+    @FXML
+    private ListView<Pair<Product, Integer>> productList;
+
     private Node[] disable_enable_paymentNodes;
 
     @FXML
@@ -45,6 +49,8 @@ public class UserTransactionController {
                 tabName_Label.setText(newValue.getNote());
                 date_Label.setText(newValue.getOpenDate().toString());
                 ccStored_Label.setText(newValue.getCardLastFour());
+
+                productList.setItems(newValue.getProducts());
             }
         });
         Product.updateProducts();
@@ -94,6 +100,19 @@ public class UserTransactionController {
 
             button.setVisible(true);
             button.setText(productName);
+            button.setOnAction((event) -> {
+                org.dgby.gatorpos.models.Tab theTab = TabScreenController.currentTab.get();
+                ObservableList<Pair<Product, Integer>> products = theTab.getProducts();
+
+                Integer currentCount = 0;
+                for (Pair<Product, Integer> item : products) {
+                    if (item.getKey().getId() == product.getId()) {
+                        currentCount = item.getValue();
+                    }
+                }
+
+                org.dgby.gatorpos.models.Tab.updateTabProduct(theTab, product, currentCount + 1);
+            });
         }
 
         // Create node array for disabline and enabling easier
