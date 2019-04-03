@@ -1,5 +1,7 @@
 package org.dgby.gatorpos.controllers;
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -11,7 +13,8 @@ import javafx.event.ActionEvent;
 
 import org.dgby.gatorpos.SceneManager;
 import org.dgby.gatorpos.models.Product;
-
+import org.dgby.util.Track;
+import static org.dgby.util.CCValidator.isValid;
 import java.io.IOException;
 import java.util.*;
 
@@ -50,6 +53,7 @@ public class UserTransactionController {
                 tabName_Label.setText(newValue.getNote());
                 date_Label.setText(newValue.getOpenDate().toString());
                 ccStored_Label.setText(newValue.getCardLastFour());
+                total_Label.setText("$ " + newValue.getTotal());
 
                 productList.setItems(new FilteredList<>(newValue.getProducts(), product -> product.getValue() > 0));
             }
@@ -113,6 +117,7 @@ public class UserTransactionController {
                 }
 
                 org.dgby.gatorpos.models.Tab.updateTabProduct(theTab, product, currentCount + 1);
+                total_Label.setText("$ " + theTab.getTotal());
             });
         }
 
@@ -122,6 +127,42 @@ public class UserTransactionController {
                 twentyFC_Button, fiftyFC_Button, hundredFC_Button, amount_TF, ccNum_TF, expDate_TF
         };
         disableNotReady();
+
+        // Maybe util lol not cc parser??!
+        ChangeListener<String> changeListener = (obserable, oldVal, newVal) -> {
+            if (!oldVal.equals(newVal) && newVal.length() > 3) {
+                String startVal = newVal.substring(0, 2);
+                String endVal = newVal.substring(newVal.length() - 1);
+
+                // We count the end sentinals, to test if track 2 is there or not.
+                long q_count = newVal.chars().filter(ch -> ch == '?').count();
+
+                // q_count must be >= to 2, This means track 2 is also in the input.
+                if (q_count >= 2 && endVal.equals("?")) {
+                    if (startVal.equals("%B")) {
+                        Map<String, String> ccMap = Track.track1Parser().parse(newVal);
+
+                        if (ccMap.containsKey("DD")) {
+                            Platform.runLater(() -> {
+                                ccNum_TF.setText(ccMap.get("PAN"));
+                                expDate_TF.setText(ccMap.get("ED"));
+                            });
+                        }
+                    }
+
+                    if (startVal.equals("%E")) {
+                        Platform.runLater(() -> {
+                            // NOTE: Make this an alert?
+                            ccNum_TF.setText("Swipe Error, Try Again!");
+                            ccNum_TF.selectAll();
+                        });
+                    }
+                }
+            }
+        };
+
+        ccNum_TF.textProperty().addListener(changeListener);
+        expDate_TF.textProperty().addListener(changeListener);
     }
 
     // Done button
@@ -156,31 +197,80 @@ public class UserTransactionController {
             Product product = selectedItem.getKey();
             org.dgby.gatorpos.models.Tab.updateTabProduct(TabScreenController.currentTab.get(), product, 0);
         }
-
     }
 
     // stored CC Pushed
     public void runStoredCCPushed(ActionEvent event) throws IOException {
-        // TODO clicking this adds the tab to the closed tab filtered list and is
-        // finished
+
+        // Make sure to card is stored if its not tell em and do nothing
+        if (TabScreenController.currentTab.get().getCardData() != null)
+        {
+            org.dgby.gatorpos.models.Tab.closeTab(TabScreenController.currentTab.get());
+            message_Label.setText("Transaction complete! Press Done!");
+            disableNotReady();
+        }
+        else
+        {
+            message_Label.setText("No Stored Credit card");
+        }
     }
 
     // new CC Pushed
     public void newCCPushed(ActionEvent event) throws IOException {
-        // TODO this will store the new CC as the payment method. If a stored CC exists,
-        // it will replace it in the database
+        // Updates card info and either fills in or replaces the card information
+        String cc = ccNum_TF.getText();
+        String expdate =  expDate_TF.getText();
+
+        if(isValid(cc)){
+            org.dgby.gatorpos.models.Tab.updateTabCardInfo(TabScreenController.currentTab.get(), cc.substring(cc.length()-4),
+                    "no Name" + cc + expdate );
+            disableNotReady();
+            message_Label.setText("Transaction complete! Press Done!");
+            org.dgby.gatorpos.models.Tab.closeTab(TabScreenController.currentTab.get());
+        }
+        else
+        {
+            message_Label.setText("Invalid Credit Card Number");
+        }
+
     }
 
     // any fast cash button can be pressed
     public void fastcashButtonPressed(ActionEvent event) throws IOException {
-        // TODO this will read the text field from the exact cash button pressed and set
-        // the change label accordingly
+        change_Label.setText("$ 0.00");
+        message_Label.setText("Exact cash Processed! Press Done!");
+        org.dgby.gatorpos.models.Tab.closeTab(TabScreenController.currentTab.get());
+        disableNotReady();
     }
 
     // Tender button pushed
     public void tenderPressed(ActionEvent event) {
-        // TODO this will read the amount text field store it and set the change label
-        // accordingly
+        String total = total_Label.getText();
+        Float tot = Float.parseFloat(total.substring(2));
+
+        if(!amount_TF.getText().isEmpty())
+        {
+            Float amnt = Float.parseFloat(amount_TF.getText());
+
+            if(amnt < tot)
+            {
+                message_Label.setText("Not enough Cash!");
+            }
+            else
+            {
+                org.dgby.gatorpos.models.Tab.closeTab(TabScreenController.currentTab.get());
+                message_Label.setText("Click done to finish Transaction");
+                Float change = amnt - tot;
+                String change_Togive = change.toString();
+                change_Label.setText(change_Togive);
+                disableNotReady();
+            }
+
+        }
+        else
+        {
+            message_Label.setText("You must enter an amount");
+        }
     }
 
     // Clear Button
@@ -209,5 +299,10 @@ public class UserTransactionController {
         amount_TF.clear();
         ccNum_TF.clear();
         expDate_TF.clear();
+        ccNum_TF.clear();
+        expDate_TF.clear();
+        amount_TF.clear();
+        change_Label.setText("Change: $ xx.xx");
+        message_Label.setText("Message:");
     }
 }

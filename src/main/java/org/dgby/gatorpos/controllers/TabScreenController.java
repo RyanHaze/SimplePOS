@@ -13,6 +13,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Random;
 
 import org.dgby.gatorpos.SceneManager;
 import org.dgby.gatorpos.models.Tab;
@@ -82,9 +83,11 @@ public class TabScreenController {
 
     public void fastCashPressed(ActionEvent event) throws IOException {
         String name = name_TF.getText();
-        if (name.trim().length() == 0)
-            name = "No Name";
-
+        if (name.trim().length() == 0) {
+            Random rand = new Random();
+            int randnum = rand.nextInt(500) + 1;
+            name = "FastCash #" + randnum;
+        }
         currentTab.set(Tab.openTab(name));
         SceneManager.getInstance().changeParent("UserTransaction");
         clearTF();
