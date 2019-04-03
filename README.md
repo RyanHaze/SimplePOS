@@ -12,9 +12,9 @@ Testing a commit.
 - [x] Populate product list
 - [x] Reorder button
 - [x] Void button
-- [ ] Payment methods
-  - [ ] Credit Card
-  - [ ] Cash
+- [x] Payment methods
+  - [x] Credit Card
+  - [x] Cash
 
 ### Tab Screen
 
