@@ -336,4 +336,17 @@ public class Tab {
 
         return note + " - " + cardLastFour;
     }
+
+    private Integer total;
+
+    public String getTotal() {
+        total = 0;
+        this.products.forEach(item -> {
+            total += item.getKey().getPrice() * item.getValue();
+        });
+
+        Integer cents = total % 100;
+        Integer dollars = total / 100;
+        return String.format("%d.%02d", dollars, cents);
+    }
 }
