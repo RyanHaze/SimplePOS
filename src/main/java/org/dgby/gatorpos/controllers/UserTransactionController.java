@@ -126,7 +126,6 @@ public class UserTransactionController {
 
     // Done button
     public void doneButtonPushed(ActionEvent event) throws IOException {
-        // TODO we need to disable and clear
         clearTF();
         disableNotReady();
         SceneManager.getInstance().changeParent("Tab");
@@ -139,7 +138,6 @@ public class UserTransactionController {
 
     // Reoder Button Pushed
     public void reorderButtonPushed(ActionEvent event) throws IOException {
-        // TODO When an item is selected in the lisview duplicate it
         if (!productList.getSelectionModel().isEmpty()) {
             Pair<Product, Integer> selectedItem = productList.getSelectionModel().getSelectedItem();
             Product product = selectedItem.getKey();
@@ -153,7 +151,6 @@ public class UserTransactionController {
 
     // void Button Pushed
     public void voidButtonPushed(ActionEvent event) throws IOException {
-        // TODO When an item is selected delete it from the listview
         if (!productList.getSelectionModel().isEmpty()) {
             Pair<Product, Integer> selectedItem = productList.getSelectionModel().getSelectedItem();
             Product product = selectedItem.getKey();
