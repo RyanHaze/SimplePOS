@@ -67,26 +67,32 @@ public class Track {
         return ret.toString();
     }
 
+    @SuppressWarnings("unused")
     private String fetchFC() {
         return getChar().toString();
     }
 
+    @SuppressWarnings("unused")
     private String fetchPAN() {
         return getStringUntil(20, fieldSeperator);
     }
 
+    @SuppressWarnings("unused")
     private String fetchNAME() {
         return getStringUntil(27, fieldSeperator);
     }
 
+    @SuppressWarnings("unused")
     private String fetchED() {
         return getStringUntil(4, fieldSeperator);
     }
 
+    @SuppressWarnings("unused")
     private String fetchSC() {
         return getStringUntil(3, fieldSeperator);
     }
 
+    @SuppressWarnings("unused")
     private String fetchDD() {
         return getStringUntil(100, endSentinel);
     }
