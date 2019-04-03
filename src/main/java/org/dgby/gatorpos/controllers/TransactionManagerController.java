@@ -9,8 +9,11 @@ import java.io.IOException;
 
 public class TransactionManagerController {
 
-    // todo: need to finalize database and create transaction class and define
-    // tablieview and listview
+    /* TODO: We need to populate the tableview with all finalized tabs
+             Additionally, we need button functionality to show credit
+             card information and the product tab.
+     */
+
     @FXML
     private Button showProduct_Button, ccInfo_Button, home_Button, back_Button;
 
@@ -21,6 +24,17 @@ public class TransactionManagerController {
 
     public void managerButtonPressed(ActionEvent event) throws IOException {
         SceneManager.getInstance().changeParent("MainManager");
+    }
+
+
+    public void showProductsPressed(ActionEvent event) throws  IOException
+    {
+        // TODO: This button displays all products from a particular tab
+    }
+
+    public void ccInfoPressed(ActionEvent event) throws IOException
+    {
+        //TODO: this button displays the cc information
     }
 
 }
