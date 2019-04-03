@@ -1,6 +1,7 @@
 package org.dgby.gatorpos.controllers;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -13,6 +14,7 @@ import org.dgby.gatorpos.models.Product;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Predicate;
 
 public class UserTransactionController {
 
@@ -50,7 +52,7 @@ public class UserTransactionController {
                 date_Label.setText(newValue.getOpenDate().toString());
                 ccStored_Label.setText(newValue.getCardLastFour());
 
-                productList.setItems(newValue.getProducts());
+                productList.setItems(new FilteredList<>(newValue.getProducts(), product -> product.getValue() > 0));
             }
         });
         Product.updateProducts();
@@ -139,12 +141,12 @@ public class UserTransactionController {
     // Reoder Button Pushed
     public void reorderButtonPushed(ActionEvent event) throws IOException {
         // TODO When an item is selected in the lisview duplicate it
-        if(!productList.getSelectionModel().isEmpty())
-        {
-            Pair<Product,Integer> selectedItem = productList.getSelectionModel().getSelectedItem();
+        if (!productList.getSelectionModel().isEmpty()) {
+            Pair<Product, Integer> selectedItem = productList.getSelectionModel().getSelectedItem();
             Product product = selectedItem.getKey();
             Integer currentCount = selectedItem.getValue();
-            org.dgby.gatorpos.models.Tab.updateTabProduct(TabScreenController.currentTab.get(), product, currentCount + 1);
+            org.dgby.gatorpos.models.Tab.updateTabProduct(TabScreenController.currentTab.get(), product,
+                    currentCount + 1);
 
         }
 
@@ -153,19 +155,18 @@ public class UserTransactionController {
     // void Button Pushed
     public void voidButtonPushed(ActionEvent event) throws IOException {
         // TODO When an item is selected delete it from the listview
-        if (!productList.getSelectionModel().isEmpty())
-        {
-            Pair<Product,Integer> selectedItem = productList.getSelectionModel().getSelectedItem();
+        if (!productList.getSelectionModel().isEmpty()) {
+            Pair<Product, Integer> selectedItem = productList.getSelectionModel().getSelectedItem();
             Product product = selectedItem.getKey();
             org.dgby.gatorpos.models.Tab.updateTabProduct(TabScreenController.currentTab.get(), product, 0);
         }
-
 
     }
 
     // stored CC Pushed
     public void runStoredCCPushed(ActionEvent event) throws IOException {
-        // TODO clicking this adds the tab to the closed tab filtered list and is finished
+        // TODO clicking this adds the tab to the closed tab filtered list and is
+        // finished
     }
 
     // new CC Pushed
