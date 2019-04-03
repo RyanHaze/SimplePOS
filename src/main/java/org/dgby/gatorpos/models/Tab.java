@@ -29,7 +29,7 @@ public class Tab {
     private static ObservableList<Tab> tabList = FXCollections.observableArrayList();
 
     public Tab(Integer id, String open_date, String close_date, String note, String card_lastfour, String card_data,
-            Integer cash, ObservableMap<Integer, Integer> products) {
+            Integer cash, ObservableList<Pair<Product, Integer>> products) {
         this.id = new SimpleIntegerProperty(id);
         this.open_date = new SimpleStringProperty(open_date);
         this.close_date = new SimpleStringProperty(close_date);
@@ -39,10 +39,13 @@ public class Tab {
         this.card_data = new SimpleStringProperty(card_data);
         this.cash = new SimpleIntegerProperty(cash);
 
-        this.products = new SimpleListProperty<Pair<Product, Integer>>(FXCollections.observableArrayList());
+        this.products = new SimpleListProperty<Pair<Product, Integer>>(products);
     }
 
     public static void updateTabs() {
+        Product.updateProducts();
+        ObservableList<Product> products = Product.getProducts();
+
         tabList.clear();
         try {
             ConnectionManager.createTable("Tabs", new String[] {
@@ -56,17 +59,24 @@ public class Tab {
             ConnectionManager.executeQuery("SELECT rowid AS id,* FROM Tabs", resultSet -> {
                 while (resultSet.next()) {
                     Integer tab_id = resultSet.getInt("id");
-                    ObservableMap<Integer, Integer> productMap = FXCollections.observableHashMap();
+                    ObservableList<Pair<Product, Integer>> productList = FXCollections.observableArrayList();
 
                     ConnectionManager.executeQuery("SELECT * FROM TabItems WHERE tab_id = " + tab_id, resultSet2 -> {
-                        while (resultSet2.next())
-                            productMap.put(resultSet2.getInt("product_id"), resultSet2.getInt("count"));
+                        while (resultSet2.next()) {
+                            Integer product_id = resultSet2.getInt("product_id");
+                            Integer count = resultSet2.getInt("count");
+
+                            products.forEach(item -> {
+                                if (item.getId() == product_id)
+                                    productList.add(new Pair<Product, Integer>(item, count));
+                            });
+                        }
                     });
 
                     tabList.add(new Tab(resultSet.getInt("id"), resultSet.getString("open_date"),
                             resultSet.getString("close_date"), resultSet.getString("note"),
                             resultSet.getString("card_lastfour"), resultSet.getString("card_data"),
-                            resultSet.getInt("cash"), productMap));
+                            resultSet.getInt("cash"), productList));
                 }
             });
         } catch (SQLException sqlEx) {
@@ -105,7 +115,7 @@ public class Tab {
                     tabList.add(new Tab(resultSet.getInt("id"), resultSet.getString("open_date"),
                             resultSet.getString("close_date"), resultSet.getString("note"),
                             resultSet.getString("card_lastfour"), resultSet.getString("card_data"),
-                            resultSet.getInt("cash"), FXCollections.observableHashMap()));
+                            resultSet.getInt("cash"), FXCollections.observableArrayList()));
 
                 }
             });
@@ -140,20 +150,28 @@ public class Tab {
         }
     }
 
+    private static boolean rowExists;
+
     public static void updateTabProduct(Tab tab, Product product, Integer count) {
         try {
-            ConnectionManager.executeUpdate("UPDATE TabItems SET count = " + count + " WHERE tab_id = " + tab.getId()
-                    + " AND product_id = " + product.getId());
-        } catch (SQLException sqlEx) {
-            try {
+            rowExists = false;
+            ConnectionManager.executeQuery(
+                    "SELECT 1 FROM TabItems WHERE tab_id = " + tab.getId() + " AND product_id = " + product.getId(),
+                    resultSet -> {
+                        rowExists = resultSet.next();
+                    });
+
+            if (!rowExists)
                 ConnectionManager.insertRow("TabItems", new String[] {
                         "tab_id", "product_id", "count"
                 }, new Object[] {
                         tab.getId(), product.getId(), count
                 });
-            } catch (SQLException sqlEx2) {
-                System.out.println(sqlEx2.getMessage());
-            }
+            else
+                ConnectionManager.executeUpdate("UPDATE TabItems SET count = " + count + " WHERE tab_id = "
+                        + tab.getId() + " AND product_id = " + product.getId());
+        } catch (SQLException sqlEx) {
+            System.out.println(sqlEx.getMessage());
         }
 
         Integer index = -1;
