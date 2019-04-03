@@ -14,7 +14,6 @@ import org.dgby.gatorpos.models.Product;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.function.Predicate;
 
 public class UserTransactionController {
 
