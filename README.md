@@ -6,9 +6,9 @@ Testing a commit.
 ## Todo
 
 ### Transaction Screen
- - [ ] Update currentTab fields
- - [ ] Item button onClick implementation
- - [ ] Populate product list
+ - [X] Update currentTab fields
+ - [X] Item button onClick implementation
+ - [X] Populate product list
  - [ ] Reorder button
  - [ ] Void button
  - [ ] Payment methods
